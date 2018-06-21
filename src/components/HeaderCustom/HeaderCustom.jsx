@@ -116,7 +116,13 @@ class HeaderCustom extends Component {
             <Link to={'/app/recite'}>背单词</Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to={'/app/setting'}>设置</Link>
+            <Link to={'/app/wordsbook'}>单词本</Link>
+          </Menu.Item>
+          <Menu.Item key="6">
+            <Link to={'/app/test'}>考核</Link>
+          </Menu.Item>
+          <Menu.Item key="7">
+            <Link to={'/app/review'}>复习</Link>
           </Menu.Item>
           {/* <Menu.Item key="6">
             <Link to={'/app/occupation/catalog'}>职业库</Link>

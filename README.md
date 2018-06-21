@@ -22,3 +22,9 @@ yarn start
 ```
 
 Now you can see your project running.
+
+## Test request and response
+
+- Start your backend project and listenning at port 5007, then start your fontend project.   
+- Open url 'http://localhost:3000/#/app/recite' or refresh it, it will send a request(format in /format/recite_cet4.format).  
+- Open your brower developer tools and click console/network to see if the request succeeded.
