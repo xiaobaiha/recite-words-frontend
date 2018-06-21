@@ -12,6 +12,7 @@ import UnloginApp from '../UnloginApp';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
 import Recite from '../pages/Recite/Recite';
+import WordsBook from '../pages/WordsBook/WordsBook';
 
 export default class CRouter extends Component {
   render() {
@@ -22,7 +23,7 @@ export default class CRouter extends Component {
           <Route path={'app'} component={App} onEnter={this.requireAuth}>{/* <IndexRedirect to="/login"/>  */}
           {/* <Route path={'app'} component={App}> */}
               <Route path={'recite'} component={Recite}/>
-              <Route path={'wordsbook'} component={NotFound}/>
+              <Route path={'wordsbook'} component={WordsBook}/>
               <Route path={'test'} component={NotFound}/>
               <Route path={'review'} component={NotFound}/>
           </Route>
