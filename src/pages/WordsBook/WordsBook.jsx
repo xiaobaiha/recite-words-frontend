@@ -77,12 +77,9 @@ class WordsBook extends React.Component{
           dataIndex: 'operation',
           render: (text, record) => {
             return (
-              this.state.dataSource.length > 1 ?
-              (
-                <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-                  <a href="javascript:;">Delete</a>
+                <Popconfirm title="确认删除?" cancelText="取消" okText="确认" onConfirm={() => this.onDelete(record.key)}>
+                  <a href="javascript:;">删除</a>
                 </Popconfirm>
-              ) : null
             );
           },
         }];
