@@ -3,7 +3,7 @@ import {
   Router, 
   Route, 
   hashHistory, 
-  // IndexRedirect, 
+  IndexRedirect, 
   // browserHistory
 } from 'react-router';
 import NotFound from '../pages/NotFound';
@@ -20,8 +20,9 @@ export default class CRouter extends Component {
     return (
       <Router history={hashHistory}>
         <Route path={'/'}>
-          <Route path={'app'} component={App} onEnter={this.requireAuth}>{/* <IndexRedirect to="/login"/>  */}
-          {/* <Route path={'app'} component={App}> */}
+          {/* <Route path={'app'} component={App} onEnter={this.requireAuth}>  */}
+          <IndexRedirect to="/app/recite"/>
+          <Route path={'app'} component={App}>
               <Route path={'recite'} component={Recite}/>
               <Route path={'wordsbook'} component={WordsBook}/>
               <Route path={'test'} component={NotFound}/>
