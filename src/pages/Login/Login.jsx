@@ -36,7 +36,7 @@ class Login extends React.Component {
 
         if (cookies.get("user")) {
             let userObj = cookies.get("user");
-            if (userObj.roleId === 1 || userObj.roleId === 2 || userObj.roleId === 3 || userObj.roleId === 4) {
+            if (userObj.roleId === 1) {
                 this.setState({
                     user: cookies.get("front_user_temp"),
                     userType: 1
