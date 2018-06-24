@@ -9,7 +9,7 @@ import {
     Modal
 } from "antd";
 import { Link } from "react-router";
-// import "./Login.less";
+import "./Login.less";
 // import LoginImg from "./Login.png";
 import axios from "axios";
 // import LoginForm from '../../components/LoginForm/LoginForm';

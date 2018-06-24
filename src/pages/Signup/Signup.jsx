@@ -12,7 +12,7 @@ import {
   Modal
 } from "antd";
 // import BreadcrumbCustom from "../../components/BreadcrumbCustom";
-// import "./Signup.less";
+import "./Signup.less";
 import axios from "axios";
 import {preURL} from "../../axios/config";
 import {hashHistory} from "react-router";
@@ -163,7 +163,7 @@ componentWillMount() {
 
     return (
       
-          <div className="signup_all_container">
+          <div className="signup_container">
             <h1>
               <strong>
                 用户信息注册
