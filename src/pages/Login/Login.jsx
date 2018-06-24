@@ -38,7 +38,7 @@ class Login extends React.Component {
             let userObj = cookies.get("user");
             if (userObj.roleId === 1) {
                 this.setState({
-                    user: cookies.get("front_user_temp"),
+                    user: cookies.get("user"),
                     userType: 1
                 });
                 hashHistory.push("/app/recite");
@@ -55,27 +55,23 @@ class Login extends React.Component {
             .validateFields((err, values) => {
                 if (!err) {
                     console.log("Received values of form: ", values);
-
                     axios({
                         method: "post",
-                        url: preURL + "/user/login",
+                        url: preURL + "/api/login",
                         dataType: "json",
                         data: {
-                            roleName: 'roleName',
-                            email: 'email',
-                            password: 'password'
+                            email: values.email,
+                            password: values.password
                         },
                         headers: {
-                            "Content-Type": "application/json;charset=UTF-8"
+                            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
                         }
                     }).then(response => {
                         console.log("login response:", response);
                         if (response.data.code === "200") {
-                            //   const {router} = this.props;
-                            //   let {data} = response;
                             const { cookies } = this.props;
 
-                            cookies.set("front_user_temp", {
+                            cookies.set("user", {
                                 userName: response.data.data.userName,
                                 roleId: response.data.data.roleId
                             }, {
@@ -83,16 +79,10 @@ class Login extends React.Component {
                                     maxAge: 24 * 3600
                                 });
                             hashHistory.push("/app/recite");
-                        } else if (response.data.code === "6014") {
-                            Modal.error({ title: "登录失败", content: "图片验证码过期！" });
-                        } else if (response.data.code === "6007") {
-                            Modal.error({ title: "登录失败", content: "图片验证码错误！" });
                         } else if (response.data.code === "1011") {
                             Modal.error({ title: "登录失败", content: "没有对应账号！" });
                         } else if (response.data.code === "1013") {
                             Modal.error({ title: "登录失败", content: "账户或密码错误，请重新填写！" });
-                        } else if (response.data.code === "6002") {
-                            Modal.error({ title: "登录失败", content: "邮箱账号未激活！" });
                         } else {
                             Modal.error({ title: "登录失败", content: "系统错误" });
                         }
@@ -114,11 +104,11 @@ class Login extends React.Component {
                         <Divider />
                     </FormItem>
                     <FormItem>
-                        {getFieldDecorator("user", {
+                        {getFieldDecorator("email", {
                             rules: [
                                 {
                                     required: true,
-                                    message: "请输入用户名!"
+                                    message: "请输入邮箱!"
                                 }
                             ]
                         })(
