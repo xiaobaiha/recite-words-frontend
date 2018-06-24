@@ -28,7 +28,7 @@ class Recite extends React.Component {
               user: 'usr001'
             },
             headers: {
-              "Content-Type": "application/json;charset=UTF-8"
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
             }
           }).then(response => {
               console.log("recite/cet4 response:", response);
@@ -43,7 +43,7 @@ class Recite extends React.Component {
               user: 'usr001'
             },
             headers: {
-              "Content-Type": "application/json;charset=UTF-8"
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
             }
           }).then(response => {
               console.log("recite/cet6 response:", response);
