@@ -22,7 +22,7 @@ class Recite extends React.Component {
     setCet4Data = () => {
         axios({
             method: "post",
-            url: preURL + "/recite/cet4",
+            url: preURL + "/api/recite/cet4",
             dataType: "json",
             data: {
               user: 'usr001'
@@ -37,7 +37,7 @@ class Recite extends React.Component {
     setCet6Data = () => {
         axios({
             method: "post",
-            url: preURL + "/recite/cet6",
+            url: preURL + "/api/recite/cet6",
             dataType: "json",
             data: {
               user: 'usr001'
