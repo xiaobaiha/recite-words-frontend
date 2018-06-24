@@ -1,0 +1,41 @@
+// 用户获取一个4级考核单词列表（列表总数为100个，若用户学习数量低于100个则返回所有单词，高于100个随机返回100个，若为0个提示没有学习）
+ajax: "/api/test/cet4_test"
+ajax.request{
+    user: 'user001'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+    data:{
+        words_list:[{
+            word: 'Apple',
+            desc: 'n. 苹果',
+            catalog: '1'
+        },{
+            word: 'Pear'
+            desc: 'n. 梨'
+            catalog: '2'
+        }, ...] //自定义的单词列表
+    }
+}
+
+// 用户获取一个6级考核单词列表（列表总数为100个，若用户学习数量低于100个则返回所有单词，高于100个随机返回100个，若为0个提示没有学习）
+ajax: "/api/test/cet6_test"
+ajax.request{
+    user: 'user001'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+    data:{
+        words_list:[{
+            word: 'Apple',
+            desc: 'n. 苹果',
+            catalog: '1'
+        },{
+            word: 'Pear'
+            desc: 'n. 梨'
+            catalog: '2'
+        }, ...] //自定义的单词列表
+    }
+}
