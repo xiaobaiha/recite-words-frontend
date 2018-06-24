@@ -18,42 +18,16 @@ import {preURL} from "../../axios/config";
 import {hashHistory} from "react-router";
 import {instanceOf} from "prop-types";
 import {withCookies, Cookies} from "react-cookie";
-// import PhoneInput from "../../components/PhoneInput/PhoneInput";
-// import FormArea from "../../components/FormArea/FormArea";
-// import ControlledRangePicker from "../../components/ControlledRangePicker/ControlledRangePicker";
-// import * as Util from "../../components/Utils";
 
 const FormItem = Form.Item;
-
-// const AutoCompleteOption = AutoComplete.Option;
 
 class Signup extends React.Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
   state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-    userType: "student",
-    phone_number: "",
-    teacher_binding_status: 0,
-    school_binding_status: 0,
-    mail_valid: 1,
-    userMail: '',
-    teacherMail: '',
-    schoolMail: '',
-    isHighSchool: false,
-    juniorStartEnd: [],
-    seniorStartEnd: []
+    confirmDirty: false
   };
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   initData = () => {
-//     // console.log("user type:", this.props.location);
-//     this.setState({userType: this.props.location.query.usertype});
-//   };
 
 componentWillMount() {
   const { cookies } = this.props;
@@ -62,7 +36,7 @@ componentWillMount() {
       let userObj = cookies.get("user");
       if (userObj.roleId === 1 ) {
           this.setState({
-              user: cookies.get("front_user_temp"),
+              user: cookies.get("user"),
               userType: 1
           });
           hashHistory.push("/app/recite");
@@ -80,30 +54,33 @@ componentWillMount() {
           console.log("Received values of form: ", values);
             axios({
               method: "post",
-              url: preURL + "/user/student_register",
+              url: preURL + "/api/signup",
               dataType: "json",
               data: {
                 email: values.email,
                 password: values.password,
-                roleName: "student",
-                username: "jack",
-                realname: values.realname
+                name: values.name
               },
               headers: {
-                "Content-Type": "application/json;charset=UTF-8"
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
               }
             }).then(response => {
               console.log("register response:", response);
               if (response.data.code === "200") {
                 const {router} = this.props;
-                Modal.success({title: "注册成功", content: <div><p>请前往邮箱进行激活！</p></div>});
-                router.push("/login");
+                const modal = Modal.success({
+                  title: "注册成功", 
+                  content: "5s后自动前往登录页面",
+                });
+                setTimeout(() => {
+                  modal.destroy();
+                  router.push("/userservice/login");
+                }, 5000);
+                
               } else if (response.data.code === "6008") {
                 Modal.error({title: "注册失败", content: "注册邮箱账号已存在/已经被占用！"});
-              } else if (response.data.code === "6002") {
-                Modal.error({title: "注册失败", content: "邮箱注册但未激活！"});
               } else {
-                Modal.error({title: "登录失败", content: "未知错误..."});
+                Modal.error({title: "注册失败", content: "未知错误..."});
               }
             }).catch(error => {
               console.log("register error:", error);
@@ -112,21 +89,29 @@ componentWillMount() {
       });
   }
 
-//   handleConfirmBlur = e => {
-//     const value = e.target.value;
-//     this.setState({
-//       confirmDirty: this.state.confirmDirty || !!value
-//     });
-//   }
+  handleConfirmBlur = e => {
+    const value = e.target.value;
+    this.setState({
+      confirmDirty: this.state.confirmDirty || !!value
+    });
+  }
 
-//   checkPassword = (rule, value, callback) => {
-//     const form = this.props.form;
-//     if (value && value !== form.getFieldValue("password")) {
-//       callback("Two passwords that you enter is inconsistent!");
-//     } else {
-//       callback();
-//     }
-//   }
+  checkConfirm = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(["confirm"], {force: true});
+    }
+    callback();
+  }
+
+  checkPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue("password")) {
+      callback("Two passwords that you enter is inconsistent!");
+    } else {
+      callback();
+    }
+  }
 
   render() {
     const {getFieldDecorator} = this.props.form;
@@ -208,9 +193,17 @@ componentWillMount() {
                             message: "请输入密码!"
                           }, {
                             validator: this.checkConfirm
+                          },
+                          {
+                            min: 6,
+                            message: "密码不足6位！"
+                          },
+                          {
+                            max: 20,
+                            message: "字符超过限制！"
                           }
                         ]
-                      })(<Input type="password" placeholder="请填写6到12位密码"/>)}
+                      })(<Input type="password" placeholder="请填写6到20位密码"/>)}
                     </Col>
                   </Row>
                 </FormItem>
@@ -224,7 +217,7 @@ componentWillMount() {
                             message: "请再次输入输入您的密码!"
                           }, {
                             validator: this.checkPassword,
-                            message: "两次输入的密码不相符"
+                            message: "两次输入的密码不相符！"
                           }
                         ]
                       })(<Input type="password" onBlur={this.handleConfirmBlur}/>)}
@@ -238,8 +231,12 @@ componentWillMount() {
                         rules: [
                           {
                             required: true,
-                            message: "想让我们如何称呼您？",
+                            message: "想让我们如何称呼您？(20个字符以内)",
                             whitespace: true
+                          },
+                          {
+                            max: 20,
+                            message: "字符超过限制！"
                           }
                         ]
                       })(<Input/>)}
