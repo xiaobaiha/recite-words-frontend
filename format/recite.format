@@ -9,7 +9,8 @@ ajax.response:{
     "message": "success",
 	data:{
         counter: 100, //背诵计划设置的量
-        present_no: 103,    // 今天应该背诵的第一个单词的序号
+        present_no: 103,    // 应该背诵的第一个单词的序号
+        today_no: 101,  //今天应该背诵的第一个单词的序号
         today_words: {
             word: 'Hello1',
             desc: 'Hello1 is a word',
@@ -48,6 +49,7 @@ ajax.response:{
 	data:{
         counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
+        today_no: 101,  //今天应该背诵的第一个单词的序号
         today_words: {
             word: 'Hello1',
             desc: 'Hello1 is a word',
