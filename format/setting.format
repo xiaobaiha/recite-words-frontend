@@ -1,0 +1,12 @@
+//用户设置背诵计划
+ajax: "/api/setting/plan"
+ajax.request{
+    user: "user001"
+    counter: "100"
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+}
+
+//用户设置要背的单词集（前端实现）

@@ -1,4 +1,5 @@
 // 获取用户4级背诵进度
+ajax.method: "post"
 ajax:"/api/recite/cet4"
 ajax.request: {
     user: 'user001'
@@ -7,23 +8,36 @@ ajax.response:{
     "code": "200",
     "message": "success",
 	data:{
+        counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
-        most_no: 183,   // 今天最多背诵的序号
-        cet4_no: 1025,  // 4级总共的单词数目
-        today_words: [{
+        today_words: {
             word: 'Hello1',
-            desc: 'Hello1 is a word'
-        },{
-            word: 'Hello2',
-            desc: 'Hello2 is a word'
-        },{
-            word: 'Hello3',
-            desc: 'Hello3 is a word'
-        }]  // 今天应该背诵的所有单词数组
+            desc: 'Hello1 is a word',
+        }  // 今天第一个要背诵的单词
+    }
+}
+
+// 获取用户4级下一个单词
+ajax.method: "post"
+ajax:"/api/recite/cet4_next"
+ajax.request{
+    user: 'user001'
+    present_no: '103'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+	data:{
+        present_no: 104,    // 之后一个应该背诵的单词序号
+        today_words: {
+            word: 'Hi',
+            desc: 'Hi is a word',
+        }  // 之后一个要背诵的单词
     }
 }
 
 // 获取用户6级背诵进度
+ajax.method: "post"
 ajax:"/api/recite/cet6"
 ajax.request: {
     user: 'user001'
@@ -32,18 +46,45 @@ ajax.response:{
     "code": "200",
     "message": "success",
 	data:{
+        counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
-        most_no: 183,   // 今天最多背诵的序号
-        cet4_no: 1025,  // 6级总共的单词数目
-        today_words: [{
+        today_words: {
             word: 'Hello1',
-            desc: 'Hello1 is a word'
-        },{
-            word: 'Hello2',
-            desc: 'Hello2 is a word'
-        },{
-            word: 'Hello3',
-            desc: 'Hello3 is a word'
-        }]  // 今天应该背诵的所有单词数组
+            desc: 'Hello1 is a word',
+        }  // 今天第一个要背诵的单词
     }
 }
+
+// 获取用户6级下一个单词
+ajax.method: "post"
+ajax:"/api/recite/cet6_next"
+ajax.request{
+    user: 'user001'
+    present_no: '103'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+	data:{
+        present_no: 104,    // 之后一个应该背诵的单词序号
+        today_words: {
+            word: 'Hi',
+            desc: 'Hi is a word',
+        }  // 之后一个要背诵的单词
+    }
+}
+
+// 用户在背单词页面把单词添加到自定义单词列表
+ajax.method: "post"
+ajax: "/api/recite/collect"
+ajax.request{
+    user: 'user001'
+    present_no: '103'
+    catalog: '1' //0表示cet4，1表示cet6
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+}
+
+

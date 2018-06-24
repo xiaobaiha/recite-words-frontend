@@ -1,0 +1,41 @@
+// 用户获取一个4级复习单词列表
+ajax: "/api/review/cet4_review"
+ajax.request{
+    user: 'user001'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+    data:{
+        words_list:[{
+            word: 'Apple',
+            desc: 'n. 苹果',
+            catalog: '1'
+        },{
+            word: 'Pear'
+            desc: 'n. 梨'
+            catalog: '2'
+        }, ...] //自定义的单词列表
+    }
+}
+
+// 用户获取一个6级复习单词列表
+ajax: "/api/review/cet6_review"
+ajax.request{
+    user: 'user001'
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+    data:{
+        words_list:[{
+            word: 'Apple',
+            desc: 'n. 苹果',
+            catalog: '1'
+        },{
+            word: 'Pear'
+            desc: 'n. 梨'
+            catalog: '2'
+        }, ...] //自定义的单词列表
+    }
+}
