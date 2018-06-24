@@ -108,7 +108,6 @@ class Login extends React.Component {
         // console.log("state:",this.state);
         return (
             <div className="login_all_container">
-                <div className="login_img_container" />
                 <Form key="student_form" onSubmit={this.handleSubmit} className="login-form">
                     <FormItem className="login_form_title">
                         <h2>登录</h2>
