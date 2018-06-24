@@ -227,7 +227,7 @@ componentWillMount() {
                 <FormItem {...formItemLayout} label={< span > 设置昵称 </span>}>
                   <Row gutter={8}>
                     <Col span={8}>
-                      {getFieldDecorator("nickname", {
+                      {getFieldDecorator("name", {
                         rules: [
                           {
                             required: true,
