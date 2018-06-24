@@ -4,12 +4,14 @@ import React, { Component } from 'react';
 import {Layout} from 'antd';
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
 import FooterCustom from './components/FooterCustom/FooterCustom';
+import { CookiesProvider } from 'react-cookie';
 import './App.css';
 const {Content} = Layout;
 class App extends Component {
   render() {
     const childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, {user: this.props.user}));
     return (
+      <CookiesProvider>
       <Layout>
         <HeaderCustom/>
         <Layout style={{flexDirection: 'row'}}>
@@ -24,6 +26,7 @@ class App extends Component {
           <FooterCustom/>
         </Layout>
       </Layout>
+      </CookiesProvider>
     );
   }
 }

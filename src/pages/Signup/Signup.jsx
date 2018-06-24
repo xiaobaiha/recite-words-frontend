@@ -68,7 +68,6 @@ componentWillMount() {
           hashHistory.push("/app/recite");
       }
   }
-  this.initData();
 }
 
   handleSubmit = e => {
