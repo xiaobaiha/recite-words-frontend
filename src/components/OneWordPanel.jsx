@@ -1,27 +1,33 @@
 import React from 'react';
-import {Button} from 'antd';
+import { Button, Card, Icon } from 'antd';
 
 class OneWordPanel extends React.Component{
-    state = {
+    
+    constructor(props){
+      super(props);
+      this.state = {
         show: true,
+        pre_actions: [<a onClick={props.nextWord()}>认识</a>, <a onClick={this.handleNotKnow}>不认识</a>]
+      }
     }
     handleNotKnow = () => {
         this.setState({
             show: false,
+            pre_actions: [<a onClick={this.props.nextWord()}>下一个</a>]
         })
     }
-    handleKnow = () => {
-        this.setState({
-            show: false,
-        })
-    }
+
     render(){
         const props = this.props;
         const { show } = this.state;
         return (<div>
-            <div className='word_title'>{props.word}</div>
-            {show ? <div className='know_or_not'><Button onClick={() => props.nextWord()}>认识</Button><Button onClick={this.handleNotKnow}>不认识</Button></div> :
-            <div className='word_desc'><span>{props.desc}</span><Button onClick={() => props.nextWord()}>下一个</Button></div>}
+          <Card hoverable={true} actions={this.state.pre_actions}>
+            <h2 style={{"fontSize": "3rem","fontWeight": "700","margin":"1rem"}}>{props.word}</h2>
+            {show ?null:
+            <Card bodyStyle={{"fontSize":"20px", "backgroundColor":"#ebedf0"}}>
+              {props.desc}
+            </Card>}
+          </Card>
         </div>)
     }
 }

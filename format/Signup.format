@@ -1,0 +1,13 @@
+// 用户获取一个4级考核单词列表（列表总数为100个，若用户学习数量低于100个则返回所有单词，高于100个随机返回100个，若为0个提示没有学习）
+ajax: "/api/test/cet4_test"
+ajax.method: "post"
+ajax.request{
+    email: 'user001@123.com',
+    name: 'user',
+    password: '123345'
+}
+ajax.response:{
+    code: "200",
+    message: "success",
+    data: true
+}

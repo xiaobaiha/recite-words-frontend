@@ -3,11 +3,11 @@ import {Tabs, Progress,Card} from 'antd';
 import axios from 'axios';
 import {preURL} from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
-import './Recite.less';
+import '../Recite/Recite.less';
 
 const TabPane = Tabs.TabPane;
 
-class Recite extends React.Component {
+class Test extends React.Component {
   state = {}
   componentWillMount() {
     this.setCet4Data();
@@ -57,7 +57,7 @@ class Recite extends React.Component {
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
           <TabPane className="recite_tabpane" tab="四级" key="1">
-            <div className="oneword">
+            <div className="oneword" style={{"margin":"5rem 2rem"}}>
               <OneWord
                 word='Hello'
                 desc='你好'
@@ -66,21 +66,14 @@ class Recite extends React.Component {
             <div>
               <Card>
                 <div className="progress_container">
-                  <span>今天背诵进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
-                </div>
-              </Card>
-
-              <Card>
-                <div className="progress_container">
-                  <span>CET4总进度</span>
+                  <span>复习进度</span>
                   <Progress type="circle" percent={50} status="active"/>
                 </div>
               </Card>
             </div>
           </TabPane>
           <TabPane className="recite_tabpane" tab="六级" key="2">
-            <div className="oneword">
+            <div className="oneword" style={{"margin":"5rem 2rem"}}>
               <OneWord
                 word='Hello'
                 desc='你好'
@@ -89,14 +82,7 @@ class Recite extends React.Component {
             <div>
               <Card>
                 <div className="progress_container">
-                  <span>今天背诵进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
-                </div>
-              </Card>
-
-              <Card>
-                <div className="progress_container">
-                  <span>CET4总进度</span>
+                  <span>复习进度</span>
                   <Progress type="circle" percent={50} status="active"/>
                 </div>
               </Card>
@@ -108,4 +94,4 @@ class Recite extends React.Component {
   }
 }
 
-export default Recite;
+export default Test;
