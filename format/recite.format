@@ -7,6 +7,7 @@ ajax.request: {
 ajax.response:{
     "code": "200",
     "message": "success",
+    counter: 100, //背诵计划设置的量
 	data:{
         counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
@@ -18,7 +19,6 @@ ajax.response:{
 }
 
 // 获取用户4级下一个单词
-ajax.method: "post"
 ajax:"/api/recite/cet4_next"
 ajax.request{
     user: 'user001'
@@ -45,6 +45,7 @@ ajax.request: {
 ajax.response:{
     "code": "200",
     "message": "success",
+    counter: 100, //背诵计划设置的量
 	data:{
         counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
@@ -56,7 +57,6 @@ ajax.response:{
 }
 
 // 获取用户6级下一个单词
-ajax.method: "post"
 ajax:"/api/recite/cet6_next"
 ajax.request{
     user: 'user001'
@@ -86,5 +86,4 @@ ajax.response:{
     "code": "200",
     "message": "success",
 }
-
 
