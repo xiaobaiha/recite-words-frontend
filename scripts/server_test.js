@@ -15,7 +15,8 @@ http.createServer(function (request, response) {
     response.end(JSON.stringify({
       code: '200',
       data: {
-        name: 'user001'
+        name: 'user001',
+        setting: 1,
       }
     }))
   } else if (url.indexOf('/api/logout') != -1) {
@@ -44,7 +45,7 @@ http.createServer(function (request, response) {
     response.end(JSON.stringify({
       code: '200',
       data: {
-        counter: 100, //背诵计划设置的量
+        counter: 80, //背诵计划设置的量
         present_no: 153, // 应该背诵的第一个单词的序号
         today_no: 101, //今天应该背诵的第一个单词的序号
         today_words: {
@@ -79,6 +80,11 @@ http.createServer(function (request, response) {
           collected: false 
         } // 今天第一个要背诵的单词
       }
+    }))
+  } else if (url.indexOf('/api/setting/plan') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: true
     }))
   }
 

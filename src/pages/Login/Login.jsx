@@ -72,7 +72,8 @@ class Login extends React.Component {
 
               cookies.set("user", {
                 name: response.data.data.name,
-                email: values.email
+                email: values.email,
+                setting: response.data.data.setting
               }, {
                   path: "/",
                   maxAge: 24 * 3600
