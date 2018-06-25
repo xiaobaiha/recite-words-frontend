@@ -17,7 +17,7 @@ class HeaderCustom extends Component {
     super(props);
     const {cookies} = this.props;
     if (cookies.get('user')) {
-      console.log("user:", cookies.get('user'))
+      
       this.state = {
         user: cookies.get('user'),
         visible: false,
@@ -42,11 +42,16 @@ class HeaderCustom extends Component {
 
   logout = () => {
     const {cookies} = this.props;
+    const user = cookies.get('user');
+    console.log("user:", user)
 
     axios({
       method: 'post',
       url: preURL + '/api/logout',
       dataType: 'json',
+      data: {
+        email: user.email
+      },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
       }
@@ -67,8 +72,8 @@ class HeaderCustom extends Component {
   };
 
   render() {
-    navhead = "你好！ " + (this.state.user.userName
-      ? this.state.user.userName
+    navhead = "你好！ " + (this.state.user.name
+      ? this.state.user.name
       : '');
     return (
       <Header>
