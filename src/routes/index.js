@@ -15,6 +15,7 @@ import Recite from '../pages/Recite/Recite';
 import WordsBook from '../pages/WordsBook/WordsBook';
 import Review from '../pages/Review/Review';
 import Test from '../pages/Test/Test';
+import Setting from '../pages/Setting/Setting';
 
 export default class CRouter extends Component {
   render() {
@@ -29,6 +30,7 @@ export default class CRouter extends Component {
               <Route path={'wordsbook'} component={WordsBook}/>
               <Route path={'test'} component={Test}/>
               <Route path={'review'} component={Review}/>
+              <Route path={'setting'} component={Setting}/> 
           </Route>
           <Route path={'userservice'} component={UnloginApp}>
             <Route path={'login'} component={Login}/>
