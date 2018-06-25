@@ -153,13 +153,13 @@ class Recite extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>今天背诵进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter)} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter,10)} status="active"/>
                 </div>
               </Card>
               <Card>
                 <div className="progress_container">
                   <span>CET4总进度</span>
-                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET4_COUNT)} status="active"/>
+                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET4_COUNT,10)} status="active"/>
                 </div>
               </Card>
             </div>
@@ -176,13 +176,13 @@ class Recite extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>今天背诵进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter)} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter,10)} status="active"/>
                 </div>
               </Card>
               <Card>
                 <div className="progress_container">
                   <span>CET4总进度</span>
-                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET6_COUNT)} status="active"/>
+                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET6_COUNT,10)} status="active"/>
                 </div>
               </Card>
             </div>
