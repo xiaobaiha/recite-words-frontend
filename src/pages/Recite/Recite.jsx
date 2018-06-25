@@ -35,7 +35,9 @@ class Recite extends React.Component {
       url: preURL + "/api/recite/collect",
       dataType: "json",
       data: {
-        user: this.state.user.email
+        user: this.state.user.email,
+        present_no: this.state.present_no,
+        catalog: this.state.cet_flag? 0: 1,
       },
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
