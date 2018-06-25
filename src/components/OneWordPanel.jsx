@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Icon } from 'antd';
+import { Card, Icon } from 'antd';
 
 class OneWordPanel extends React.Component{
     
@@ -7,13 +7,13 @@ class OneWordPanel extends React.Component{
       super(props);
       this.state = {
         show: true,
-        pre_actions: [<a onClick={props.nextWord()}>认识</a>, <a onClick={this.handleNotKnow}>不认识</a>]
+        pre_actions: [<span onClick={props.nextWord()}><Icon type="smile" />认识</span>, <span onClick={this.handleNotKnow}>不认识<Icon type="frown" /></span>]
       }
     }
     handleNotKnow = () => {
         this.setState({
             show: false,
-            pre_actions: [<a onClick={this.props.nextWord()}>下一个</a>]
+            pre_actions: [<span onClick={this.props.nextWord()}>下一个<Icon type="forward" /></span>]
         })
     }
 

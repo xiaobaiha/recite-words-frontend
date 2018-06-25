@@ -36,7 +36,6 @@ class HeaderCustom extends Component {
   }
 
   menuClick = e => {
-    // console.log(e);
     e.key === 'logout' && this.logout();
   };
 
@@ -107,11 +106,10 @@ class HeaderCustom extends Component {
               <Menu.Item key="11">
                 <Link to={'/app/setting'}>用户设置</Link>
               </Menu.Item>
-              < Menu.Item key="12">
-                <span
-                  onClick={() => {
+              <Menu.Item key="12" onClick={() => {
                   this.setState({visible: true});
-                }}>退出登录</span>
+                }}>
+                <span>退出登录</span>
               </Menu.Item>
             </MenuItemGroup >
           </SubMenu>
@@ -134,4 +132,3 @@ class HeaderCustom extends Component {
 }
 
 export default withCookies(HeaderCustom);
-// export default HeaderCustom;
