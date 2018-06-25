@@ -9,6 +9,7 @@ ajax.response:{
     code: "200",
     message: "success",
     data: {
-      name: 'user001'
+      name: 'user001',
+      setting: 0 //0为4+6级，1为4级，2为6级
     }
 }
