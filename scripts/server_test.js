@@ -16,7 +16,7 @@ http.createServer(function (request, response) {
       code: '200',
       data: {
         name: 'user001',
-        setting: 1,
+        setting: 0,
       }
     }))
   } else if (url.indexOf('/api/logout') != -1) {
@@ -37,7 +37,7 @@ http.createServer(function (request, response) {
         today_words: {
           word: 'Hi',
           desc: 'Hi is a word',
-          collected: false 
+          collected: false
         } // 之后一个要背诵的单词
       }
     }))
@@ -51,7 +51,7 @@ http.createServer(function (request, response) {
         today_words: {
           word: 'Hello1',
           desc: 'Hello1 is a word',
-          collected: false 
+          collected: false
         } // 今天第一个要背诵的单词
       }
     }))
@@ -63,7 +63,7 @@ http.createServer(function (request, response) {
         today_words: {
           word: 'CET6Hi',
           desc: 'CET6 Hi is a word',
-          collected: false 
+          collected: false
         } // 之后一个要背诵的单词
       }
     }))
@@ -77,7 +77,7 @@ http.createServer(function (request, response) {
         today_words: {
           word: 'CET6 Hello1',
           desc: 'CET6 Hello1 is a word',
-          collected: false 
+          collected: false
         } // 今天第一个要背诵的单词
       }
     }))
@@ -85,6 +85,21 @@ http.createServer(function (request, response) {
     response.end(JSON.stringify({
       code: '200',
       data: true
+    }))
+  } else if (url.indexOf('/api/wordsbook/cet4_list') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        words_list: [{
+          word: 'Apple',
+          desc: 'n. \n11苹果',
+          catalog: '1'
+        }, {
+          word: 'Pear',
+          desc: 'n. 梨',
+          catalog: '2'
+        }]
+      }
     }))
   }
 

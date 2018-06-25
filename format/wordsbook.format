@@ -22,11 +22,11 @@ ajax.response:{
 // 用户获取自定义六级单词列表
 ajax: "/api/wordsbook/cet6_list"
 ajax.request{
-    user: 'user001'
+    user: 'user001@163.com'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+    code: "200",
+    message: "success",
     data:{
         words_list:[{
             word: 'Apple',
@@ -49,6 +49,6 @@ ajax.request{
     catalog: 0 //0为4级，1为6级
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+    code: "200",
+    message: "success",
 }

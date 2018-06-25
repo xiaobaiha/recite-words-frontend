@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, Progress,Card, notification} from 'antd';
+import {Tabs, Progress,Card, notification, Modal} from 'antd';
 import axios from 'axios';
 import {preURL} from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
@@ -158,13 +158,16 @@ class Recite extends React.Component {
         today_words: data.today_words,
         fav_flag: data.today_words.collected
       });
+      if (data.present_no - data.today_no === this.state.count) {
+        Modal.success({title:"恭喜",content:"您已完成今日计划"})
+      }
     }).catch(error => console.error("recite/cet6 error:", error));
   }
   render() {
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
-          <TabPane className="recite_tabpane" tab="四级" key="1">
+          {this.state.user.setting < 2?<TabPane className="recite_tabpane" tab="四级" key="1">
             <div className="oneword">
               <OneWord
                 fav_flag={this.state.fav_flag}
@@ -187,8 +190,8 @@ class Recite extends React.Component {
                 </div>
               </Card>
             </div>
-          </TabPane>
-          <TabPane className="recite_tabpane" tab="六级" key="2">
+          </TabPane>:null}
+          {this.state.user.setting % 2 === 0?<TabPane className="recite_tabpane" tab="六级" key="2">
             <div className="oneword">
               <OneWord
                 fav_flag={this.state.fav_flag}
@@ -211,7 +214,7 @@ class Recite extends React.Component {
                 </div>
               </Card>
             </div>
-          </TabPane>
+          </TabPane>:null}
         </Tabs>
       </div>
     );

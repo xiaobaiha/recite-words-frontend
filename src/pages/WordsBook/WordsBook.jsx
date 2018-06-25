@@ -1,21 +1,25 @@
 import React from 'react';
-import {Table, Popconfirm} from 'antd';
+import {Table, Popconfirm,Tabs} from 'antd';
 import './Wordsbook.less';
+import { withCookies } from "react-cookie";
+import axios from 'axios';
+import {preURL} from '../../axios/config';
 
+const TabPane = Tabs.TabPane;
 class WordsBook extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [
       {
         title: '序号',
-        dataIndex: 'name',
-        width: '30%'
+        dataIndex: 'index',
+        width: '10%'
       }, {
         title: '单词',
-        dataIndex: 'age'
+        dataIndex: 'word'
       }, {
         title: '解释',
-        dataIndex: 'address'
+        dataIndex: 'desc'
       }, {
         title: '操作',
         dataIndex: 'operation',
@@ -32,23 +36,74 @@ class WordsBook extends React.Component {
         }
       }
     ];
-
+    const user = props.cookies.get('user');
     this.state = {
-      dataSource: [
-        {
-          key: '0',
-          name: 'Edward King 0',
-          age: '32',
-          address: 'London, Park Lane no. 0'
-        }, {
-          key: '1',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1'
-        }
-      ],
-      count: 2
+      dataSource: [],
+      user: user
     };
+  }
+  componentWillMount(){
+    this.getCet4List();
+  }
+  getCet4List = () => {
+    axios({
+      method: "post",
+      url: preURL + "/api/wordsbook/cet4_list",
+      dataType: "json",
+      data: {
+        user: this.state.user.email
+      },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    }).then(response => {
+      console.log("wordsbook/cet4_list response:", response);
+      const data = response.data.data;
+      if(response.data.code === "200"){
+        const words_list = data.words_list;
+        const data_temp = words_list.map((item,index) => {
+          return {
+            key: index+1,
+            index: index+1,
+            word: item.word,
+            desc: item.desc
+          }
+        });
+        this.setState({
+          dataSource: data_temp,
+        });
+      }
+    }).catch(error => console.error("wordsbook/cet4_list error:", error));
+  }
+  getCet6List = () => {
+    axios({
+      method: "post",
+      url: preURL + "/api/wordsbook/cet6_list",
+      dataType: "json",
+      data: {
+        user: this.state.user.email
+      },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    }).then(response => {
+      console.log("wordsbook/cet6_list response:", response);
+      const data = response.data.data;
+      if(response.data.code === "200"){
+        const words_list = data.words_list;
+        const data_temp = words_list.map((item,index) => {
+          return {
+            key: index+1,
+            index: index+1,
+            word: item.word,
+            desc: item.desc
+          }
+        });
+        this.setState({
+          dataSource: data_temp,
+        });
+      }
+    }).catch(error => console.error("wordsbook/cet6_list error:", error));
   }
   onCellChange = (key, dataIndex) => {
     return (value) => {
@@ -82,19 +137,44 @@ class WordsBook extends React.Component {
       count: count + 1
     });
   }
+  callback = (key) => {
+    this.setState({
+      dataSource: []
+    });
+    if (key === '1') {
+      this.getCet4List();
+    } else if (key === '2') {
+      this.getCet6List();
+    }
+  }
   render() {
     const {dataSource} = this.state;
     const columns = this.columns;
     return (
       <div className="wordsbook">
-        <Table
-          bordered
-          dataSource={dataSource}
-          columns={columns}
-          title={() => <strong>单词本</strong>}/>
+        <Tabs size="large" onChange={this.callback} type="card">
+          {this.state.user.setting < 2?
+          <TabPane className="recite_tabpane" tab="四级" key="1">
+            <Table
+            bordered
+            dataSource={dataSource}
+            columns={columns}
+            title={() => <strong>单词本</strong>}/>
+          </TabPane>
+            :null}
+          {this.state.user.setting % 2 === 0?
+          <TabPane className="recite_tabpane" tab="六级" key="2">
+            <Table
+            bordered
+            dataSource={dataSource}
+            columns={columns}
+            title={() => <strong>单词本</strong>}/>
+          </TabPane>
+            :null}
+        </Tabs>
       </div>
     )
   }
 }
 
-export default WordsBook;
+export default withCookies(WordsBook);
