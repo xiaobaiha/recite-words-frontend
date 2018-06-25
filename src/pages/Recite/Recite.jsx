@@ -169,6 +169,7 @@ class Recite extends React.Component {
           <TabPane className="recite_tabpane" tab="六级" key="2">
             <div className="oneword">
               <OneWord
+                fav_flag={this.state.fav_flag}
                 word={this.state.today_words?this.state.today_words.word:''}
                 desc={this.state.today_words?this.state.today_words.desc:''}
                 nextWord={() => this.getNextWord()}
@@ -183,7 +184,7 @@ class Recite extends React.Component {
               </Card>
               <Card>
                 <div className="progress_container">
-                  <span>CET4总进度</span>
+                  <span>CET6总进度</span>
                   <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET6_COUNT,10)} status="active"/>
                 </div>
               </Card>
