@@ -4,7 +4,6 @@ import './HeaderCustom.less';
 import {preURL} from "../../axios/config";
 import axios from "axios/index";
 import {Link} from 'react-router';
-// import {instanceOf} from 'prop-types';
 import {hashHistory} from 'react-router';
 import {withCookies} from 'react-cookie';
 
@@ -55,7 +54,7 @@ class HeaderCustom extends Component {
       if (response.data.code === "200") {
         this.setState({user: ''});
         cookies.remove("user");
-        hashHistory.push('/login');
+        hashHistory.push('/userservice/login');
       } else {
         Modal.error({title: '注销失败', content: '注销失败！'});
       }
