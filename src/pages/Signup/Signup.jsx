@@ -2,16 +2,13 @@ import React from "react";
 import {
   Form,
   Input,
-  // Tooltip,
   Icon,
-  // Select,
   Row,
   Col,
   Button,
   Divider,
   Modal
 } from "antd";
-// import BreadcrumbCustom from "../../components/BreadcrumbCustom";
 import "./Signup.less";
 import axios from "axios";
 import {preURL} from "../../axios/config";
@@ -258,4 +255,3 @@ componentWillMount() {
 const WrappedRegistrationForm = Form.create()(Signup);
 
 export default withCookies(WrappedRegistrationForm);
-// export default WrappedRegistrationForm;

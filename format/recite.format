@@ -2,11 +2,11 @@
 ajax.method: "post"
 ajax:"/api/recite/cet4"
 ajax.request: {
-    user: 'user001'
+    user: 'user001@163.com'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+  code: "200",
+  message: "success",
 	data:{
         counter: 100, //背诵计划设置的量
         present_no: 103,    // 应该背诵的第一个单词的序号
@@ -14,6 +14,7 @@ ajax.response:{
         today_words: {
             word: 'Hello1',
             desc: 'Hello1 is a word',
+            collected: true 
         }  // 今天第一个要背诵的单词
     }
 }
@@ -22,17 +23,18 @@ ajax.response:{
 ajax.method: "post"
 ajax:"/api/recite/cet4_next"
 ajax.request{
-    user: 'user001'
+    user: 'user001@163.com'
     present_no: '103'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+  code: "200",
+  message: "success",
 	data:{
         present_no: 104,    // 之后一个应该背诵的单词序号
         today_words: {
             word: 'Hi',
             desc: 'Hi is a word',
+            collected: true 
         }  // 之后一个要背诵的单词
     }
 }
@@ -41,11 +43,11 @@ ajax.response:{
 ajax.method: "post"
 ajax:"/api/recite/cet6"
 ajax.request: {
-    user: 'user001'
+    user: 'user001@163.com'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+  code: "200",
+  message: "success",
 	data:{
         counter: 100, //背诵计划设置的量
         present_no: 103,    // 今天应该背诵的第一个单词的序号
@@ -53,6 +55,7 @@ ajax.response:{
         today_words: {
             word: 'Hello1',
             desc: 'Hello1 is a word',
+            collected: true
         }  // 今天第一个要背诵的单词
     }
 }
@@ -61,17 +64,18 @@ ajax.response:{
 ajax.method: "post"
 ajax:"/api/recite/cet6_next"
 ajax.request{
-    user: 'user001'
+    user: 'user001@163.com'
     present_no: '103'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+  code: "200",
+  message: "success",
 	data:{
         present_no: 104,    // 之后一个应该背诵的单词序号
         today_words: {
             word: 'Hi',
             desc: 'Hi is a word',
+            collected: true 
         }  // 之后一个要背诵的单词
     }
 }
@@ -80,13 +84,13 @@ ajax.response:{
 ajax.method: "post"
 ajax: "/api/recite/collect"
 ajax.request{
-    user: 'user001'
+    user: 'user001@163.com' //user email
     present_no: '103'
     catalog: '1' //0表示cet4，1表示cet6
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+    code: "200",
+    message: "success",
 }
 
 
