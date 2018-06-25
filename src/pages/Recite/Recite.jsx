@@ -7,6 +7,8 @@ import './Recite.less';
 import { withCookies } from "react-cookie";
 
 const TabPane = Tabs.TabPane;
+const CET4_COUNT = 5520;
+const CET6_COUNT = 1540;
 
 class Recite extends React.Component {
   constructor(props){
@@ -80,10 +82,11 @@ class Recite extends React.Component {
       console.log("recite/cet4 response:", response);
       const data = response.data.data;
       this.setState({
-        counter: data.counr, //背诵计划设置的量
+        counter: data.counter, //背诵计划设置的量
         present_no: data.present_no,    // 应该背诵的第一个单词的序号
         today_no: data.today_no,  //今天应该背诵的第一个单词的序号
-        today_words: data.today_words
+        today_words: data.today_words,
+        fav_flag: data.today_words.collected
       });
     }).catch(error => console.error("recite/cet4 error:", error));
   }
@@ -102,14 +105,16 @@ class Recite extends React.Component {
       console.log("recite/cet6 response:", response);
       const data = response.data.data;
       this.setState({
-        counter: data.counr, //背诵计划设置的量
+        counter: data.counter, //背诵计划设置的量
         present_no: data.present_no,    // 应该背诵的第一个单词的序号
         today_no: data.today_no,  //今天应该背诵的第一个单词的序号
-        today_words: data.today_words
+        today_words: data.today_words,
+        fav_flag: data.today_words.collected
       })
     }).catch(error => console.error("recite/cet6 error:", error));
   }
   getNextWord = () => {
+    console.log("next word");
     axios({
       method: "post",
       url: preURL + "/api/recite/"+(this.state.cet_flag?"cet4_next":"cet6_next"),
@@ -126,7 +131,8 @@ class Recite extends React.Component {
       const data = response.data.data;
       this.setState({
         present_no: data.present_no,    // 应该背诵的第一个单词的序号
-        today_words: data.today_words
+        today_words: data.today_words,
+        fav_flag: data.today_words.collected
       })
     }).catch(error => console.error("recite/cet6 error:", error));
   }
@@ -147,13 +153,13 @@ class Recite extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>今天背诵进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter)} status="active"/>
                 </div>
               </Card>
               <Card>
                 <div className="progress_container">
                   <span>CET4总进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
+                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET4_COUNT)} status="active"/>
                 </div>
               </Card>
             </div>
@@ -170,14 +176,13 @@ class Recite extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>今天背诵进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter)} status="active"/>
                 </div>
               </Card>
-
               <Card>
                 <div className="progress_container">
                   <span>CET4总进度</span>
-                  <Progress type="circle" percent={50} status="active"/>
+                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET6_COUNT)} status="active"/>
                 </div>
               </Card>
             </div>

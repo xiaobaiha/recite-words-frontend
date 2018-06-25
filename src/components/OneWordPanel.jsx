@@ -7,15 +7,21 @@ class OneWordPanel extends React.Component {
     super(props);
     this.state = {
       show: true,
-      pre_actions: [< span onClick={() =>
-        props.nextWord()
-      } > <Icon type="smile" />认识 </span>, <span onClick={this.handleNotKnow}>不认识<Icon type="frown" /> </span>]
     }
+  }
+  componentWillReceiveProps(props){
+    if(props.word === this.props.word) return
+    this.setState({
+      show: true,
+      pre_actions: [< span onClick={() =>
+        this.props.nextWord()
+      } > <Icon type="smile" />认识 </span>, <span onClick={this.handleNotKnow}>不认识<Icon type="frown" /> </span>]
+    });
   }
   handleNotKnow = () => {
     this.setState({
       show: false,
-      pre_actions: [<span onClick={
+      pre_actions: [<span onClick={() =>
         this
           .props
           .nextWord()

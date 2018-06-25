@@ -28,7 +28,45 @@ http.createServer(function (request, response) {
       code: '200',
       data: true
     }))
+  } else if (url.indexOf('/api/recite/cet4_next') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        present_no: 154, // 之后一个应该背诵的单词序号
+        today_words: {
+          word: 'Hi',
+          desc: 'Hi is a word',
+          collected: false 
+        } // 之后一个要背诵的单词
+      }
+    }))
   } else if (url.indexOf('/api/recite/cet4') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        counter: 100, //背诵计划设置的量
+        present_no: 153, // 应该背诵的第一个单词的序号
+        today_no: 101, //今天应该背诵的第一个单词的序号
+        today_words: {
+          word: 'Hello1',
+          desc: 'Hello1 is a word',
+          collected: false 
+        } // 今天第一个要背诵的单词
+      }
+    }))
+  } else if (url.indexOf('/api/recite/cet6_next') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        present_no: 104, // 之后一个应该背诵的单词序号
+        today_words: {
+          word: 'CET6Hi',
+          desc: 'CET6 Hi is a word',
+          collected: false 
+        } // 之后一个要背诵的单词
+      }
+    }))
+  } else if (url.indexOf('/api/recite/cet6') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -36,20 +74,10 @@ http.createServer(function (request, response) {
         present_no: 103, // 应该背诵的第一个单词的序号
         today_no: 101, //今天应该背诵的第一个单词的序号
         today_words: {
-          word: 'Hello1',
-          desc: 'Hello1 is a word',
+          word: 'CET6 Hello1',
+          desc: 'CET6 Hello1 is a word',
+          collected: false 
         } // 今天第一个要背诵的单词
-      }
-    }))
-  } else if (url.indexOf('/api/recite/cet4_next') != -1) {
-    response.end(JSON.stringify({
-      code: '200',
-      data: {
-        present_no: 104, // 之后一个应该背诵的单词序号
-        today_words: {
-          word: 'Hi',
-          desc: 'Hi is a word',
-        } // 之后一个要背诵的单词
       }
     }))
   }
