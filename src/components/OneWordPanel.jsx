@@ -1,35 +1,54 @@
 import React from 'react';
-import { Button, Card, Icon } from 'antd';
+import { Card, Icon, Tooltip } from 'antd';
 
-class OneWordPanel extends React.Component{
-    
-    constructor(props){
-      super(props);
-      this.state = {
-        show: true,
-        pre_actions: [<a onClick={props.nextWord()}>认识</a>, <a onClick={this.handleNotKnow}>不认识</a>]
-      }
-    }
-    handleNotKnow = () => {
-        this.setState({
-            show: false,
-            pre_actions: [<a onClick={this.props.nextWord()}>下一个</a>]
-        })
-    }
+class OneWordPanel extends React.Component {
 
-    render(){
-        const props = this.props;
-        const { show } = this.state;
-        return (<div>
-          <Card hoverable={true} actions={this.state.pre_actions}>
-            <h2 style={{"fontSize": "3rem","fontWeight": "700","margin":"1rem"}}>{props.word}</h2>
-            {show ?null:
-            <Card bodyStyle={{"fontSize":"20px", "backgroundColor":"#ebedf0"}}>
-              {props.desc}
-            </Card>}
-          </Card>
-        </div>)
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: true,
     }
+  }
+  componentWillReceiveProps(props){
+    if(props.word === this.props.word) return
+    this.setState({
+      show: true,
+      pre_actions: [< span onClick={() =>
+        this.props.nextWord()
+      } > <Icon type="smile" />认识 </span>, <span onClick={this.handleNotKnow}>不认识<Icon type="frown" /> </span>]
+    });
+  }
+  handleNotKnow = () => {
+    this.setState({
+      show: false,
+      pre_actions: [<span onClick={() =>
+        this
+          .props
+          .nextWord()
+      } > 下一个 < Icon type="forward" /></span>]
+    })
+  }
+
+  render() {
+    const props = this.props;
+    const { show } = this.state;
+    return (<div>
+      <Card hoverable={true} actions={this.state.pre_actions}>
+        <h2 style={{ "fontSize": "3rem", "fontWeight": "700", "margin": "1rem" }}>
+          {props.word}
+          <Tooltip title="添加到单词本">
+            <span onClick={() => props.favorite()} style={{ "fontSize": "3rem", "color": "yellow", "fontWeight": "1", "margin": "2rem" }}>{
+              props.fav_flag?<Icon type="star" />:<Icon type="star-o" />
+            }</span>
+          </Tooltip>
+        </h2>
+        {show ? null :
+          <Card bodyStyle={{ "fontSize": "20px", "backgroundColor": "#ebedf0" }}>
+            {props.desc}
+          </Card >
+        } </Card>
+    </div >)
+  }
 }
 
 export default OneWordPanel;

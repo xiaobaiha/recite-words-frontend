@@ -2,16 +2,13 @@ import React from "react";
 import {
   Form,
   Input,
-  // Tooltip,
   Icon,
-  // Select,
   Row,
   Col,
   Button,
   Divider,
   Modal
 } from "antd";
-// import BreadcrumbCustom from "../../components/BreadcrumbCustom";
 import "./Signup.less";
 import axios from "axios";
 import {preURL} from "../../axios/config";
@@ -70,12 +67,12 @@ componentWillMount() {
                 const {router} = this.props;
                 const modal = Modal.success({
                   title: "注册成功", 
-                  content: "5s后自动前往登录页面",
+                  content: "3s后自动前往登录页面",
                 });
                 setTimeout(() => {
                   modal.destroy();
                   router.push("/userservice/login");
-                }, 5000);
+                }, 3000);
                 
               } else if (response.data.code === "6008") {
                 Modal.error({title: "注册失败", content: "注册邮箱账号已存在/已经被占用！"});
@@ -258,4 +255,3 @@ componentWillMount() {
 const WrappedRegistrationForm = Form.create()(Signup);
 
 export default withCookies(WrappedRegistrationForm);
-// export default WrappedRegistrationForm;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, Button, Popconfirm} from 'antd';
+import {Table, Popconfirm} from 'antd';
 import './Wordsbook.less';
 
 class WordsBook extends React.Component {
@@ -26,7 +26,7 @@ class WordsBook extends React.Component {
               cancelText="取消"
               okText="确认"
               onConfirm={() => this.onDelete(record.key)}>
-              <a href="javascript:;">删除</a>
+              <a href="">删除</a>
             </Popconfirm>
           );
         }
