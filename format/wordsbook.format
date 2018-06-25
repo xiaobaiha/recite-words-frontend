@@ -39,3 +39,16 @@ ajax.response:{
         }, ...] //自定义的单词列表
     }
 }
+
+// 用户删除自定义单词
+ajax: "/api/wordsbook/delete_custom/"
+ajax.method: "post"
+ajax.request{
+    user: 'aaa@qqq.com'
+    word: 'Apple'
+    catalog: 0 //0为4级，1为6级
+}
+ajax.response:{
+    "code": "200",
+    "message": "success",
+}

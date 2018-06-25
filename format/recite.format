@@ -86,7 +86,7 @@ ajax: "/api/recite/collect"
 ajax.request{
     user: 'user001@163.com' //user email
     present_no: '103'
-    catalog: '1' //0表示cet4，1表示cet6
+    catalog: 1 //0表示cet4，1表示cet6
 }
 ajax.response:{
     code: "200",
