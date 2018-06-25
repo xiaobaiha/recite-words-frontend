@@ -1,0 +1,11 @@
+// 登出
+ajax: "/api/logout"
+ajax.method: "post"
+ajax.request{
+    email: 'user001@123.com',
+}
+ajax.response:{
+    code: "200",
+    message: "success",
+    data: true
+}
