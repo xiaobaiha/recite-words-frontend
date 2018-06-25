@@ -21,7 +21,7 @@ class Setting extends React.Component {
       url: preURL + "/api/recite/cet4",
       dataType: "json",
       data: {
-        email: user.email
+        user: user.email
       },
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"

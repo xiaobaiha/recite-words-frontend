@@ -157,7 +157,7 @@ class Recite extends React.Component {
         present_no: data.present_no,    // 应该背诵的第一个单词的序号
         today_words: data.today_words,
         fav_flag: data.today_words.collected
-      })
+      });
     }).catch(error => console.error("recite/cet6 error:", error));
   }
   render() {
