@@ -14,7 +14,9 @@ http.createServer(function (request, response) {
   if (url.indexOf('/api/login') != -1) {
     response.end(JSON.stringify({
       code: '200',
-      data: true
+      data: {
+        name: 'user001'
+      }
     }))
   } else if (url.indexOf('/api/logout') != -1) {
     response.end(JSON.stringify({

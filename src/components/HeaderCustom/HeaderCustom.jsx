@@ -17,6 +17,7 @@ class HeaderCustom extends Component {
     super(props);
     const {cookies} = this.props;
     if (cookies.get('user')) {
+      console.log("user:", cookies.get('user'))
       this.state = {
         user: cookies.get('user'),
         visible: false,
@@ -97,13 +98,17 @@ class HeaderCustom extends Component {
             zIndex: 10
           }}
             title={navhead}>
-            {< MenuItemGroup title = "用户中心" > <Menu.Item key="11">
-              <Link to={'/app/setting'}>用户设置</Link>
-            </Menu.Item> < Menu.Item key = "12" > <span
-              onClick={() => {
-              this.setState({visible: true});
-            }}>退出登录</span> </Menu.Item>
-                  </MenuItemGroup >}
+            < MenuItemGroup title="用户中心">
+              <Menu.Item key="11">
+                <Link to={'/app/setting'}>用户设置</Link>
+              </Menu.Item>
+              < Menu.Item key="12">
+                <span
+                  onClick={() => {
+                  this.setState({visible: true});
+                }}>退出登录</span>
+              </Menu.Item>
+            </MenuItemGroup >
           </SubMenu>
         </Menu>
         <Modal
