@@ -39,7 +39,8 @@ class WordsBook extends React.Component {
     const user = props.cookies.get('user');
     this.state = {
       dataSource: [],
-      user: user
+      user: user,
+      cet_flag: true,
     };
   }
   componentWillMount(){
@@ -105,37 +106,36 @@ class WordsBook extends React.Component {
       }
     }).catch(error => console.error("wordsbook/cet6_list error:", error));
   }
-  onCellChange = (key, dataIndex) => {
-    return (value) => {
-      const dataSource = [...this.state.dataSource];
-      const target = dataSource.find(item => item.key === key);
-      if (target) {
-        target[dataIndex] = value;
-        this.setState({dataSource});
-      }
-    };
-  }
   onDelete = (key) => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({
-      dataSource: dataSource.filter(item => item.key !== key)
+    let cata = this.state.cet_flag?0:1;
+    let word = '';
+    this.state.dataSource.forEach((item)=>{
+      if (item.key === key) word = item.word;
     });
-  }
-  handleAdd = () => {
-    const {count, dataSource} = this.state;
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: 32,
-      address: `London, Park Lane no. ${count}`
-    };
-    this.setState({
-      dataSource: [
-        ...dataSource,
-        newData
-      ],
-      count: count + 1
-    });
+    console.log("word:",word)
+    axios({
+      method: "post",
+      url: preURL + "/api/wordsbook/delete_custom",
+      dataType: "json",
+      data: {
+        user: this.state.user.email,
+        word: word,
+        catalog: cata 
+      },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    }).then(response => {
+      console.log("wordsbook/cet6_list response:", response);
+      const data = response.data.data;
+      if(response.data.code === "200"){
+        if(this.state.cet_flag){
+          this.getCet4List();
+        } else {
+          this.getCet6List();
+        }
+      }
+    }).catch(error => console.error("wordsbook/cet6_list error:", error));
   }
   callback = (key) => {
     this.setState({
@@ -143,8 +143,10 @@ class WordsBook extends React.Component {
     });
     if (key === '1') {
       this.getCet4List();
+      this.setState({cet_flag:true});
     } else if (key === '2') {
       this.getCet6List();
+      this.setState({cet_flag:false});
     }
   }
   render() {
