@@ -41,7 +41,7 @@ ajax.response:{
 }
 
 // 用户删除自定义单词
-ajax: "/api/wordsbook/delete_custom/"
+ajax: "/api/wordsbook/delete_custom"
 ajax.method: "post"
 ajax.request{
     user: 'aaa@qqq.com'

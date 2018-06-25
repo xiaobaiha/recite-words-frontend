@@ -24,36 +24,58 @@ class Recite extends React.Component {
   }
   addToWordsbook = () => {
     if (this.state.fav_flag) {
-      notification.error({
-        message: '添加失败',
-        description: '已添加此单词，请不要重复添加',
-      });
-      return;
+      axios({
+        method: "post",
+        url: preURL + "/api/wordsbook/delete_custom",
+        dataType: "json",
+        data: {
+          user: this.state.user.email,
+          word: this.state.today_words.word,
+          catalog: this.state.cet_flag? 0: 1,
+        },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        }
+      }).then(response => {
+        console.log("collect response:", response);
+        if(response.data.code === "200"){
+          this.setState({
+            fav_flag: false,
+          });
+          notification.success({
+            message: '删除成功',
+            description: '已从单词本中移除',
+          });
+          
+        }
+      }).catch(error => console.error("collect error:", error));
+    } else {
+      axios({
+        method: "post",
+        url: preURL + "/api/recite/collect",
+        dataType: "json",
+        data: {
+          user: this.state.user.email,
+          present_no: this.state.present_no,
+          catalog: this.state.cet_flag? 0: 1,
+        },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        }
+      }).then(response => {
+        console.log("collect response:", response);
+        if(response.data.code === "200"){
+          this.setState({
+            fav_flag: true
+          });
+          notification.success({
+            message: '添加成功',
+            description: '已添加到单词本',
+          });
+        }
+      }).catch(error => console.error("collect error:", error));
     }
-    axios({
-      method: "post",
-      url: preURL + "/api/recite/collect",
-      dataType: "json",
-      data: {
-        user: this.state.user.email,
-        present_no: this.state.present_no,
-        catalog: this.state.cet_flag? 0: 1,
-      },
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      }
-    }).then(response => {
-      console.log("collect response:", response);
-      if(response.data.code === "200"){
-        this.setState({
-          fav_flag: true
-        });
-        notification.success({
-          message: '添加成功',
-          description: '已添加到单词本',
-        });
-      }
-    }).catch(error => console.error("collect error:", error));
+    
     
   }
   callback = (key) => {
