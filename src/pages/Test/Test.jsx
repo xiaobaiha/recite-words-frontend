@@ -97,7 +97,7 @@ class Test extends React.Component {
             <div>
               <Card>
                 <div className="progress_container">
-                  <span>复习进度</span>
+                  <span>测试进度</span>
                   <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
                 </div>
               </Card>
@@ -116,7 +116,7 @@ class Test extends React.Component {
             <div>
               <Card>
                 <div className="progress_container">
-                  <span>复习进度</span>
+                  <span>测试进度</span>
                   <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
                 </div>
               </Card>
