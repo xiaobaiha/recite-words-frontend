@@ -1,4 +1,6 @@
-![Travis](https://img.shields.io/travis/USER/REPO.svg)
+
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)
+
 
 
 # recite-words-frontend
