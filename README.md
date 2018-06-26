@@ -1,5 +1,4 @@
-
-![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)
+![Travis](https://img.shields.io/travis/USER/REPO.svg)
 
 
 # recite-words-frontend
