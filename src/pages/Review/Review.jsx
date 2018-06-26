@@ -91,7 +91,7 @@ class Review extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>复习进度</span>
-                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
                 </div>
               </Card>
             </div>
@@ -109,7 +109,7 @@ class Review extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>复习进度</span>
-                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
                 </div>
               </Card>
             </div>

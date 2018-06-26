@@ -70,7 +70,7 @@ class Test extends React.Component {
   getNextWord = () => {
     let pre_no = this.state.pre_no + 1;
     if(pre_no === this.state.test_count){
-      Modal.success({title:'恭喜',content:<span>您的测试得分是{grade+1}分！</span>});
+      Modal.success({title:'测试完成',content:<span>您的测试得分是{grade+1}分！</span>});
     } else {
       grade++;
       // console.log(grade);
@@ -100,7 +100,7 @@ class Test extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>测试进度</span>
-                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
                 </div>
               </Card>
             </div>
@@ -120,7 +120,7 @@ class Test extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>测试进度</span>
-                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
+                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
                 </div>
               </Card>
             </div>
