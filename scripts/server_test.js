@@ -101,6 +101,66 @@ http.createServer(function (request, response) {
         }]
       }
     }))
+  } else if (url.indexOf('/api/review/cet4_review') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        words_list: [{
+          word: 'Apple',
+          desc: 'n. \n11苹果',
+          catalog: '1'
+        }, {
+          word: 'Pear',
+          desc: 'n. 梨',
+          catalog: '2'
+        }]
+      }
+    }))
+  } else if (url.indexOf('/api/review/cet6_review') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        words_list: [{
+          word: '111Apple',
+          desc: 'n. \n11苹果',
+          catalog: '1'
+        }, {
+          word: '111Pear',
+          desc: 'n. 梨',
+          catalog: '2'
+        }]
+      }
+    }))
+  } else if (url.indexOf('/api/test/cet4_test') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        words_list: Array(100).fill({
+          word: 'Apple',
+          desc: 'n. \n11苹果',
+          catalog: '1'
+        }, {
+          word: 'Pear',
+          desc: 'n. 梨',
+          catalog: '2'
+        })
+      }
+    }))
+  } else if (url.indexOf('/api/test/cet6_test') != -1) {
+    response.end(JSON.stringify({
+      code: '200',
+      data: {
+        words_list: [{
+          word: '111Apple',
+          desc: 'n. \n11苹果',
+          catalog: '1'
+        }, {
+          word: '111Pear',
+          desc: 'n. 梨',
+          catalog: '2'
+        }]
+      }
+    }))
   }
 
 }).listen(5007);

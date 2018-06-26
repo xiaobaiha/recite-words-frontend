@@ -20,7 +20,12 @@ class Recite extends React.Component {
     }
   }
   componentWillMount() {
-    this.setCet4Data();
+    const {user} = this.state;
+    if(user && user.setting < 2){
+      this.setCet4Data();
+    } else if(user && user.setting === 2){
+      this.setCet6Data();
+    }
   }
   addToWordsbook = () => {
     if (this.state.fav_flag) {
@@ -75,8 +80,6 @@ class Recite extends React.Component {
         }
       }).catch(error => console.error("collect error:", error));
     }
-    
-    
   }
   callback = (key) => {
     if (key === '1') {

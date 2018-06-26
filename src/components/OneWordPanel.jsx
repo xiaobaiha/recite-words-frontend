@@ -19,6 +19,11 @@ class OneWordPanel extends React.Component {
     });
   }
   handleNotKnow = () => {
+    if (this.props.descDisabled){
+      this.props.nextWord();
+      if(this.props.testSpe) this.props.testSpe();
+      return;
+    }
     this.setState({
       show: false,
       pre_actions: [<span onClick={() =>
@@ -36,11 +41,11 @@ class OneWordPanel extends React.Component {
       <Card hoverable={true} actions={this.state.pre_actions}>
         <h2 style={{ "fontSize": "3rem", "fontWeight": "700", "margin": "1rem" }}>
           {props.word}
-          <Tooltip title="添加到单词本">
+          {props.collect_disabled?null:<Tooltip title="添加到单词本">
             <span onClick={() => props.favorite()} style={{ "fontSize": "3rem", "color": "yellow", "fontWeight": "1", "margin": "2rem" }}>{
               props.fav_flag?<Icon type="star" />:<Icon type="star-o" />
             }</span>
-          </Tooltip>
+          </Tooltip>}
         </h2>
         {show ? null :
           <Card bodyStyle={{ "fontSize": "20px", "backgroundColor": "#ebedf0" }}>
