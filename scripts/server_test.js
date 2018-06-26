@@ -135,7 +135,7 @@ http.createServer(function (request, response) {
     response.end(JSON.stringify({
       code: '200',
       data: {
-        words_list: Array(100).fill({
+        words_list: Array(10).fill({
           word: 'Apple',
           desc: 'n. \n11苹果',
           catalog: '1'

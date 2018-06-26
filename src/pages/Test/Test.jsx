@@ -23,11 +23,13 @@ class Test extends React.Component {
   callback = (key) => {
     if (key === '1') {
       this.setCet4Data();
+      grade = 0;
       this.setState({
         cet_flag: true,
       });
     } else if (key === '2') {
       this.setCet6Data();
+      grade = 0;
       this.setState({
         cet_flag: false,
       });
@@ -46,7 +48,7 @@ class Test extends React.Component {
       }
     }).then(response => {
       console.log("test/cet4_test response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0});
+      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
     }).catch(error => console.error("test/cet4_test error:", error));
   }
   setCet6Data = () => {
@@ -62,22 +64,22 @@ class Test extends React.Component {
       }
     }).then(response => {
       console.log("test/cet6_test response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0});
+      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
     }).catch(error => console.error("test/cet6_test error:", error));
   }
   getNextWord = () => {
     let pre_no = this.state.pre_no + 1;
-    if(pre_no === 100){
-      Modal.success({title:'恭喜',content:<span>您的测试得分是{grade}！</span>});
+    if(pre_no === this.state.test_count){
+      Modal.success({title:'恭喜',content:<span>您的测试得分是{grade+1}分！</span>});
     } else {
       grade++;
-      console.log(grade);
+      // console.log(grade);
       this.setState({pre_no: pre_no});
     }
   }
   handleTestSpe = () => {
     grade--;
-    console.log(grade);
+    // console.log(grade);
   }
   render() {
     return (
@@ -98,7 +100,7 @@ class Test extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>测试进度</span>
-                  <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
+                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
                 </div>
               </Card>
             </div>
@@ -110,6 +112,7 @@ class Test extends React.Component {
                 word={this.state.words_list?this.state.words_list[this.state.pre_no].word:''}
                 desc={this.state.words_list?this.state.words_list[this.state.pre_no].desc:''}
                 nextWord={() => this.getNextWord()}
+                testSpe={() => this.handleTestSpe()}
                 collect_disabled={true}
                 descDisabled={true}/>
             </div>
@@ -117,7 +120,7 @@ class Test extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>测试进度</span>
-                  <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
+                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
                 </div>
               </Card>
             </div>

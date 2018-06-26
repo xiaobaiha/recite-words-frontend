@@ -7,7 +7,6 @@ import '../Recite/Recite.less';
 import { withCookies } from "react-cookie";
 
 const TabPane = Tabs.TabPane;
-
 class Review extends React.Component {
   constructor(props){
     super(props);
@@ -15,6 +14,7 @@ class Review extends React.Component {
     this.state = {
       user: user,
       cet_flag: user.setting === 2? false: true,
+      test_count:100,
     }
   }
   componentWillMount() {
@@ -46,7 +46,7 @@ class Review extends React.Component {
       }
     }).then(response => {
       console.log("review/cet4_review response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0});
+      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
     }).catch(error => console.error("review/cet4_review error:", error));
   }
   setCet6Data = () => {
@@ -62,13 +62,14 @@ class Review extends React.Component {
       }
     }).then(response => {
       console.log("review/cet6_review response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0});
+      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
     }).catch(error => console.error("review/cet6_review error:", error));
   }
+
   getNextWord = () => {
     let pre_no = this.state.pre_no + 1;
-    if(pre_no === 100){
-      Modal.success({title:'恭喜',content:'您已复习完成！'});
+    if(pre_no === this.state.test_count){
+      Modal.success({title:'恭喜',content:'您已完成复习！'});
     } else {
       this.setState({pre_no: pre_no});
     }
@@ -90,7 +91,7 @@ class Review extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>复习进度</span>
-                  <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
+                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
                 </div>
               </Card>
             </div>
@@ -108,7 +109,7 @@ class Review extends React.Component {
               <Card>
                 <div className="progress_container">
                   <span>复习进度</span>
-                  <Progress type="circle" percent={this.state.pre_no + 1} status="active"/>
+                  <Progress type="circle" percent={(this.state.pre_no + 1)*100/this.state.test_count} status="active"/>
                 </div>
               </Card>
             </div>

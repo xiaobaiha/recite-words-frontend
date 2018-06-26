@@ -20,8 +20,8 @@ class OneWordPanel extends React.Component {
   }
   handleNotKnow = () => {
     if (this.props.descDisabled){
-      this.props.nextWord();
       if(this.props.testSpe) this.props.testSpe();
+      this.props.nextWord();
       return;
     }
     this.setState({
