@@ -1,4 +1,4 @@
-![](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)
+<img src="https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg" alt="build success">
 # recite-words-frontend
 
 A recite words website use react.
