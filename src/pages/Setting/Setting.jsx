@@ -19,7 +19,7 @@ class Setting extends React.Component {
     });
     axios({
       method: "post",
-      url: preURL + "/api/recite/cet4",
+      url: preURL + "/recite4",
       dataType: "json",
       data: {
         user: user.email
@@ -55,7 +55,7 @@ class Setting extends React.Component {
     }
     axios({
       method: "post",
-      url: preURL + "/api/setting/plan",
+      url: preURL + "/plan",
       dataType: "json",
       data: {
         user: this.state.email,
@@ -89,7 +89,7 @@ class Setting extends React.Component {
     }
     axios({
       method: "post",
-      url: preURL + "/api/setting/plan",
+      url: preURL + "/plan",
       dataType: "json",
       data: {
         user: this.state.email,
@@ -119,7 +119,7 @@ class Setting extends React.Component {
     }
     axios({
       method: "post",
-      url: preURL + "/api/setting/plan",
+      url: preURL + "/plan",
       dataType: "json",
       data: {
         user: this.state.email,

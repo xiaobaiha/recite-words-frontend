@@ -36,7 +36,7 @@ class Review extends React.Component {
   setCet4Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/review/cet4_review",
+      url: preURL + "/review4",
       dataType: "json",
       data: {
         user: this.state.user.email
@@ -52,7 +52,7 @@ class Review extends React.Component {
   setCet6Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/review/cet6_review",
+      url: preURL + "/review6",
       dataType: "json",
       data: {
         user: this.state.user.email

@@ -1,5 +1,5 @@
 // 登录
-ajax: "/api/login"
+ajax: "/login"
 ajax.method: "post"
 ajax.request{
     email: 'user001@123.com',

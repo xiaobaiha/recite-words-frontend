@@ -31,7 +31,7 @@ class Recite extends React.Component {
     if (this.state.fav_flag) {
       axios({
         method: "post",
-        url: preURL + "/api/wordsbook/delete_custom",
+        url: preURL + "/delete",
         dataType: "json",
         data: {
           user: this.state.user.email,
@@ -57,7 +57,7 @@ class Recite extends React.Component {
     } else {
       axios({
         method: "post",
-        url: preURL + "/api/recite/collect",
+        url: preURL + "/collect",
         dataType: "json",
         data: {
           user: this.state.user.email,
@@ -97,7 +97,7 @@ class Recite extends React.Component {
   setCet4Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/recite/cet4",
+      url: preURL + "/recite4",
       dataType: "json",
       data: {
         user: this.state.user.email
@@ -120,7 +120,7 @@ class Recite extends React.Component {
   setCet6Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/recite/cet6",
+      url: preURL + "/recite6",
       dataType: "json",
       data: {
         user: this.state.user.email

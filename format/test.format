@@ -1,5 +1,5 @@
 // 用户获取一个4级考核单词列表（列表总数为100个，若用户学习数量低于100个则返回所有单词，高于100个随机返回100个，若为0个提示没有学习）
-ajax: "/api/test/cet4_test"
+ajax: "/test4"
 ajax.request{
     user: 'user001'
 }
@@ -20,7 +20,7 @@ ajax.response:{
 }
 
 // 用户获取一个6级考核单词列表（列表总数为100个，若用户学习数量低于100个则返回所有单词，高于100个随机返回100个，若为0个提示没有学习）
-ajax: "/api/test/cet6_test"
+ajax: "/test6"
 ajax.request{
     user: 'user001'
 }

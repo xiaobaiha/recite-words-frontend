@@ -51,7 +51,7 @@ class Signup extends React.Component {
           console.log("Received values of form: ", values);
           axios({
             method: "post",
-            url: preURL + "/api/signup",
+            url: preURL + "/signup",
             dataType: "json",
             data: {
               email: values.email,

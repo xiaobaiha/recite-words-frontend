@@ -1,5 +1,5 @@
 //用户设置背诵计划,设置要背的单词集
-ajax: "/api/setting/plan"
+ajax: "/plan"
 ajax.request{
     user: "user001@163.com"
     counter: "100",

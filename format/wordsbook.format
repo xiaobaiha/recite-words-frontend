@@ -1,5 +1,5 @@
 // 用户获取自定义CET4单词列表
-ajax: "/api/wordsbook/cet4_list"
+ajax: "/list4"
 ajax.request{
     user: 'user001'
 }
@@ -20,7 +20,7 @@ ajax.response:{
 }
 
 // 用户获取自定义CET6单词列表
-ajax: "/api/wordsbook/cet6_list"
+ajax: "/list6"
 ajax.request{
     user: 'user001@163.com'
 }
@@ -41,7 +41,7 @@ ajax.response:{
 }
 
 // 用户删除自定义单词
-ajax: "/api/wordsbook/delete_custom"
+ajax: "/delete"
 ajax.method: "post"
 ajax.request{
     user: 'aaa@qqq.com'

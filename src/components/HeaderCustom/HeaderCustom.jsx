@@ -46,7 +46,7 @@ class HeaderCustom extends Component {
 
     axios({
       method: 'post',
-      url: preURL + '/api/logout',
+      url: preURL + '/logout',
       dataType: 'json',
       data: {
         email: user.email

@@ -1,5 +1,5 @@
 // 登出
-ajax: "/api/logout"
+ajax: "/logout"
 ajax.method: "post"
 ajax.request{
     email: 'user001@123.com',

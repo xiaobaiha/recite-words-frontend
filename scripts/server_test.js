@@ -11,7 +11,7 @@ http.createServer(function (request, response) {
     "Access-Control-Allow-Headers": "Content-Type,Access-Token",
     "Access-Control-Expose-Headers": "*"
   });
-  if (url.indexOf('/api/login') != -1) {
+  if (url.indexOf('/login') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -19,17 +19,17 @@ http.createServer(function (request, response) {
         setting: 0,
       }
     }))
-  } else if (url.indexOf('/api/logout') != -1) {
+  } else if (url.indexOf('/logout') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: true
     }))
-  } else if (url.indexOf('/api/recite/collect') != -1) {
+  } else if (url.indexOf('/collect') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: true
     }))
-  } else if (url.indexOf('/api/recite/cet4_next') != -1) {
+  } else if (url.indexOf('/recite4_next') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -41,7 +41,7 @@ http.createServer(function (request, response) {
         } // 之后一个要背诵的单词
       }
     }))
-  } else if (url.indexOf('/api/recite/cet4') != -1) {
+  } else if (url.indexOf('/recite4') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -55,7 +55,7 @@ http.createServer(function (request, response) {
         } // 今天第一个要背诵的单词
       }
     }))
-  } else if (url.indexOf('/api/recite/cet6_next') != -1) {
+  } else if (url.indexOf('/recite6_next') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -67,7 +67,7 @@ http.createServer(function (request, response) {
         } // 之后一个要背诵的单词
       }
     }))
-  } else if (url.indexOf('/api/recite/cet6') != -1) {
+  } else if (url.indexOf('/recite6') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -81,12 +81,12 @@ http.createServer(function (request, response) {
         } // 今天第一个要背诵的单词
       }
     }))
-  } else if (url.indexOf('/api/setting/plan') != -1) {
+  } else if (url.indexOf('/plan') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: true
     }))
-  } else if (url.indexOf('/api/wordsbook/cet4_list') != -1) {
+  } else if (url.indexOf('/list4') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -101,7 +101,7 @@ http.createServer(function (request, response) {
         }]
       }
     }))
-  } else if (url.indexOf('/api/review/cet4_review') != -1) {
+  } else if (url.indexOf('/review4') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -116,7 +116,7 @@ http.createServer(function (request, response) {
         }]
       }
     }))
-  } else if (url.indexOf('/api/review/cet6_review') != -1) {
+  } else if (url.indexOf('/review6') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -131,7 +131,7 @@ http.createServer(function (request, response) {
         }]
       }
     }))
-  } else if (url.indexOf('/api/test/cet4_test') != -1) {
+  } else if (url.indexOf('/test4') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {
@@ -146,7 +146,7 @@ http.createServer(function (request, response) {
         })
       }
     }))
-  } else if (url.indexOf('/api/test/cet6_test') != -1) {
+  } else if (url.indexOf('/test6') != -1) {
     response.end(JSON.stringify({
       code: '200',
       data: {

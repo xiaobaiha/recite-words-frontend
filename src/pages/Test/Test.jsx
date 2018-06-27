@@ -39,7 +39,7 @@ class Test extends React.Component {
   setCet4Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/test/cet4_test",
+      url: preURL + "/test4",
       dataType: "json",
       data: {
         user: this.state.user.email
@@ -61,7 +61,7 @@ class Test extends React.Component {
   setCet6Data = () => {
     axios({
       method: "post",
-      url: preURL + "/api/test/cet6_test",
+      url: preURL + "/test6",
       dataType: "json",
       data: {
         user: this.state.user.email

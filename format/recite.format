@@ -1,6 +1,6 @@
 // 获取用户4级背诵进度
 ajax.method: "post"
-ajax:"/api/recite/cet4"
+ajax:"/recite4"
 ajax.request: {
     user: 'user001@163.com'
 }
@@ -21,7 +21,7 @@ ajax.response:{
 
 // 获取用户4级下一个单词
 ajax.method: "post"
-ajax:"/api/recite/cet4_next"
+ajax:"/recite4_next"
 ajax.request{
     user: 'user001@163.com'
     present_no: '103'
@@ -41,7 +41,7 @@ ajax.response:{
 
 // 获取用户6级背诵进度
 ajax.method: "post"
-ajax:"/api/recite/cet6"
+ajax:"/recite6"
 ajax.request: {
     user: 'user001@163.com'
 }
@@ -62,7 +62,7 @@ ajax.response:{
 
 // 获取用户6级下一个单词
 ajax.method: "post"
-ajax:"/api/recite/cet6_next"
+ajax:"/recite6_next"
 ajax.request{
     user: 'user001@163.com'
     present_no: '103'
@@ -82,7 +82,7 @@ ajax.response:{
 
 // 用户在背单词页面把单词添加到自定义单词列表
 ajax.method: "post"
-ajax: "/api/recite/collect"
+ajax: "/collect"
 ajax.request{
     user: 'user001@163.com' //user email
     present_no: '103'

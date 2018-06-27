@@ -49,7 +49,7 @@ class WordsBook extends React.Component {
   getCet4List = () => {
     axios({
       method: "post",
-      url: preURL + "/api/wordsbook/cet4_list",
+      url: preURL + "/list4",
       dataType: "json",
       data: {
         user: this.state.user.email
@@ -79,7 +79,7 @@ class WordsBook extends React.Component {
   getCet6List = () => {
     axios({
       method: "post",
-      url: preURL + "/api/wordsbook/cet6_list",
+      url: preURL + "/list6",
       dataType: "json",
       data: {
         user: this.state.user.email
@@ -115,7 +115,7 @@ class WordsBook extends React.Component {
     console.log("word:",word)
     axios({
       method: "post",
-      url: preURL + "/api/wordsbook/delete_custom",
+      url: preURL + "/delete",
       dataType: "json",
       data: {
         user: this.state.user.email,

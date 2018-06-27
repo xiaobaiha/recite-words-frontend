@@ -1,5 +1,5 @@
 // 用户获取一个4级复习单词列表
-ajax: "/api/review/cet4_review"
+ajax: "/review4"
 ajax.request{
     user: 'user001'
 }
@@ -20,7 +20,7 @@ ajax.response:{
 }
 
 // 用户获取一个6级复习单词列表
-ajax: "/api/review/cet6_review"
+ajax: "/review6"
 ajax.request{
     user: 'user001'
 }
