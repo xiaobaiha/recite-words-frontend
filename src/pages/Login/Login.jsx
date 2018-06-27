@@ -6,7 +6,8 @@ import {
   Button,
   Checkbox,
   Divider,
-  Modal
+  Modal,
+  Carousel 
 } from "antd";
 import { Link } from "react-router";
 import "./Login.less";
@@ -96,6 +97,15 @@ class Login extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+      <div className="login_outer_all_container">
+        <div className='carousel'>
+        <Carousel autoplay>
+          <div><img alt="" style={{"height":"20rem"}} src="https://static.baydn.com/web/images/intro-client-checkin.png"/><p>单词背诵</p><p>在线学习四六级词汇</p></div>
+          <div><img alt="" style={{"height":"20rem"}} src="https://static.baydn.com/web/images/intro-client-community.png"/><p>自定义收藏</p><p>实时收藏学习过程中的单词</p></div>
+          <div><img alt="" style={{"height":"20rem"}} src="https://static.baydn.com/web/images/intro-client-insurance.png"/><p>学习回顾</p><p>复习自己所学过的单词</p></div>
+          <div><img alt="" style={{"height":"20rem"}} src="https://static.baydn.com/web/images/intro-client-academy.png"/><p>在线考核</p><p>检测自己的学习成果</p></div>
+        </Carousel>
+      </div>
       <div className="login_all_container">
         <Form key="student_form" onSubmit={this.handleSubmit} className="login-form">
           <FormItem className="login_form_title">
@@ -155,6 +165,7 @@ class Login extends React.Component {
             </div>
           </FormItem>
         </Form>
+      </div>
       </div>
     );
   }

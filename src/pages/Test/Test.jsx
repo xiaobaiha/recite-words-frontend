@@ -93,10 +93,8 @@ class Test extends React.Component {
       }
     ];
     if (pre_no === this.state.test_count) {
-      console.log("state dirty:", this.state.dirty);
       let { words_list, dirty, cet_flag } = this.state;
       let { setCet4Data, setCet6Data } = this;
-      console.log("state:", this.state);
       let dataSource = [];
       words_list.forEach( (item,index) => {
         if (!dirty[index]){
@@ -135,6 +133,9 @@ class Test extends React.Component {
     grade--;
     let { pre_no, dirty } = this.state;
     dirty = dirty.splice(pre_no, 1, false);
+    this.setState({
+      dirty: dirty
+    });
   }
   render() {
     return (

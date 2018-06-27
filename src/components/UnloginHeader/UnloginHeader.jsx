@@ -64,7 +64,7 @@ class UnloginHeader extends Component {
           color: "white",
           fontSize: "36px"
         }}>
-          晴朗/哲男 单词
+          哲男单词
         </Header>
     )
   }

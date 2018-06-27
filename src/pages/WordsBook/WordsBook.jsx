@@ -127,7 +127,6 @@ class WordsBook extends React.Component {
       }
     }).then(response => {
       console.log("wordsbook/cet6_list response:", response);
-      const data = response.data.data;
       if(response.data.code === "200"){
         if(this.state.cet_flag){
           this.getCet4List();
