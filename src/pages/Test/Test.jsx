@@ -85,7 +85,8 @@ class Test extends React.Component {
     let columns = [
       {
         title: '单词',
-        dataIndex: 'word'
+        dataIndex: 'word',
+        width: '30%'
       }, {
         title: '解释',
         dataIndex: 'desc'
@@ -95,16 +96,20 @@ class Test extends React.Component {
       console.log("state dirty:", this.state.dirty);
       let { words_list, dirty, cet_flag } = this.state;
       let { setCet4Data, setCet6Data } = this;
-      let dataSource = words_list.map( (item,index) => {
+      console.log("state:", this.state);
+      let dataSource = [];
+      words_list.forEach( (item,index) => {
         if (!dirty[index]){
-          return {
+          dataSource.push({
             word: item.word,
             desc: item.desc
-          }
+          });
         }
       });
+      console.log("datasource:", dataSource, " column:", columns, " grade:", grade);
       Modal.success({
         title: '测试完成',
+        width: 800,
         content: <div>
           <p>您的测试得分是{grade + 1}分！</p>
           <p>您需要巩固的单词如下：</p>
@@ -116,6 +121,7 @@ class Test extends React.Component {
           </div>
         </div>,
         onOk() {
+          grade = 0;
           if (cet_flag) setCet4Data();
           else setCet6Data();
         }

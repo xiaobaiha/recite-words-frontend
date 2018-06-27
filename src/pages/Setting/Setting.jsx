@@ -3,6 +3,7 @@ import { Switch,InputNumber,Modal } from 'antd';
 import axios from "axios";
 import { preURL } from "../../axios/config";
 import { withCookies } from "react-cookie";
+import "./Setting.less";
 
 class Setting extends React.Component {
   state = {
@@ -136,9 +137,9 @@ class Setting extends React.Component {
     const { check4,check6 } = this.state;
     return (
     <div>
-      <div><span>每日背诵计划</span>{this.state.counter?<InputNumber min={1} defaultValue={this.state.counter} onChange={this.onChange} />:null}</div>
-      <div><span>是否开启四级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check4} onChange={this.onChange4} /></div>
-      <div><span>是否开启六级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check6} onChange={this.onChange6} /></div>
+      <div className='plan'><span>每日背诵计划</span>{this.state.counter?<InputNumber min={1} defaultValue={this.state.counter} onChange={this.onChange} />:null}</div>
+      <div className='cet4'><span>是否开启四级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check4} onChange={this.onChange4} /></div>
+      <div className='cet6'><span>是否开启六级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check6} onChange={this.onChange6} /></div>
     </div>);
   }
 }
