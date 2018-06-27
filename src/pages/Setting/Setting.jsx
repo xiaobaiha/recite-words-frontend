@@ -138,8 +138,8 @@ class Setting extends React.Component {
     return (
     <div className='setting'>
       <div className='plan'><span>每日背诵计划</span>{this.state.counter?<InputNumber size="large" min={1} defaultValue={this.state.counter} onChange={this.onChange} />:null}</div>
-      <div className='cet4'><span>是否开启四级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check4} onChange={this.onChange4} /></div>
-      <div className='cet6'><span>是否开启六级背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check6} onChange={this.onChange6} /></div>
+      <div className='cet4'><span>是否开启CET4背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check4} onChange={this.onChange4} /></div>
+      <div className='cet6'><span>是否开启CET6背诵</span><Switch checkedChildren="背诵" unCheckedChildren="不背诵" checked={check6} onChange={this.onChange6} /></div>
     </div>);
   }
 }

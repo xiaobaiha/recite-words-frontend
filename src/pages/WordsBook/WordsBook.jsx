@@ -155,7 +155,7 @@ class WordsBook extends React.Component {
       <div className="wordsbook">
         <Tabs size="large" onChange={this.callback} type="card">
           {this.state.user.setting < 2?
-          <TabPane className="recite_tabpane" tab="四级" key="1">
+          <TabPane className="recite_tabpane" tab="CET4" key="1">
             <Table
             bordered
             dataSource={dataSource}
@@ -164,7 +164,7 @@ class WordsBook extends React.Component {
           </TabPane>
             :null}
           {this.state.user.setting % 2 === 0?
-          <TabPane className="recite_tabpane" tab="六级" key="2">
+          <TabPane className="recite_tabpane" tab="CET6" key="2">
             <Table
             bordered
             dataSource={dataSource}

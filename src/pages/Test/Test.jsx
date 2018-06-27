@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Table, Progress, Card, Modal } from 'antd';
+import { Tabs, Table, Progress, Modal } from 'antd';
 import axios from 'axios';
 import { preURL } from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
@@ -96,8 +96,8 @@ class Test extends React.Component {
       let { words_list, dirty, cet_flag } = this.state;
       let { setCet4Data, setCet6Data } = this;
       let dataSource = [];
-      words_list.forEach( (item,index) => {
-        if (!dirty[index]){
+      words_list.forEach((item, index) => {
+        if (!dirty[index]) {
           dataSource.push({
             word: item.word,
             desc: item.desc
@@ -115,7 +115,7 @@ class Test extends React.Component {
             <Table
               bordered
               dataSource={dataSource}
-              columns={columns}/>
+              columns={columns} />
           </div>
         </div>,
         onOk() {
@@ -141,8 +141,12 @@ class Test extends React.Component {
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
-          {this.state.user.setting < 2 ? <TabPane className="recite_tabpane" tab="四级" key="1">
-            <div className="oneword" style={{ "margin": "5rem 2rem" }}>
+          {this.state.user.setting < 2 ? <TabPane className="recite_tabpane" tab="CET4" key="1">
+            <div className="progress_container">
+              <span>Test</span>
+              <Progress percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
+            </div>
+            <div className="oneword" style={{ "margin": "3rem 5rem" }}>
               <OneWord
                 fav_flag={this.state.fav_flag}
                 word={this.state.words_list ? this.state.words_list[this.state.pre_no].word : ''}
@@ -151,18 +155,14 @@ class Test extends React.Component {
                 testSpe={() => this.handleTestSpe()}
                 collect_disabled={true}
                 descDisabled={true} />
-            </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>测试进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
-                </div>
-              </Card>
             </div>
           </TabPane> : null}
-          {this.state.user.setting % 2 === 0 ? <TabPane className="recite_tabpane" tab="六级" key="2">
-            <div className="oneword" style={{ "margin": "5rem 2rem" }}>
+          {this.state.user.setting % 2 === 0 ? <TabPane className="recite_tabpane" tab="CET6" key="2">
+            <div className="progress_container">
+              <span>Test</span>
+              <Progress percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
+            </div>
+            <div className="oneword" style={{ "margin": "3rem 5rem" }}>
               <OneWord
                 fav_flag={this.state.fav_flag}
                 word={this.state.words_list ? this.state.words_list[this.state.pre_no].word : ''}
@@ -171,14 +171,6 @@ class Test extends React.Component {
                 testSpe={() => this.handleTestSpe()}
                 collect_disabled={true}
                 descDisabled={true} />
-            </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>测试进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
-                </div>
-              </Card>
             </div>
           </TabPane> : null}
         </Tabs>

@@ -1,20 +1,20 @@
 import React from 'react';
-import {Tabs, Progress,Card,Modal} from 'antd';
+import { Tabs, Progress, Modal } from 'antd';
 import axios from 'axios';
-import {preURL} from '../../axios/config';
+import { preURL } from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
 import '../Recite/Recite.less';
 import { withCookies } from "react-cookie";
 
 const TabPane = Tabs.TabPane;
 class Review extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     const user = props.cookies.get('user');
     this.state = {
       user: user,
-      cet_flag: user.setting === 2? false: true,
-      test_count:100,
+      cet_flag: user.setting === 2 ? false : true,
+      test_count: 100,
     }
   }
   componentWillMount() {
@@ -46,7 +46,7 @@ class Review extends React.Component {
       }
     }).then(response => {
       console.log("review/cet4_review response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
+      this.setState({ words_list: response.data.data.words_list, pre_no: 0, test_count: response.data.data.words_list.length });
     }).catch(error => console.error("review/cet4_review error:", error));
   }
   setCet6Data = () => {
@@ -62,67 +62,59 @@ class Review extends React.Component {
       }
     }).then(response => {
       console.log("review/cet6_review response:", response);
-      this.setState({words_list: response.data.data.words_list, pre_no: 0,test_count: response.data.data.words_list.length});
+      this.setState({ words_list: response.data.data.words_list, pre_no: 0, test_count: response.data.data.words_list.length });
     }).catch(error => console.error("review/cet6_review error:", error));
   }
 
   getNextWord = () => {
     let pre_no = this.state.pre_no + 1;
-    let {cet_flag} = this.state;
-    let {setCet4Data, setCet6Data} = this;
-    if(pre_no === this.state.test_count){
+    let { cet_flag } = this.state;
+    let { setCet4Data, setCet6Data } = this;
+    if (pre_no === this.state.test_count) {
       Modal.success({
-        title:'恭喜',
-        content:'您已完成复习！',
-        onOk(){
-          if(cet_flag) setCet4Data();
-          else  setCet6Data();
+        title: '恭喜',
+        content: '您已完成复习！',
+        onOk() {
+          if (cet_flag) setCet4Data();
+          else setCet6Data();
         }
       });
     } else {
-      this.setState({pre_no: pre_no});
+      this.setState({ pre_no: pre_no });
     }
   }
   render() {
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
-          {this.state.user.setting < 2?<TabPane className="recite_tabpane" tab="四级" key="1">
-            <div className="oneword" style={{"margin":"5rem 2rem"}}>
+          {this.state.user.setting < 2 ? <TabPane className="recite_tabpane" tab="CET4" key="1">
+            <div className="progress_container">
+              <span>Review</span>
+              <Progress percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
+            </div>
+            <div className="oneword" style={{ "margin": "3rem 5rem" }}>
               <OneWord
                 fav_flag={this.state.fav_flag}
-                word={this.state.words_list?this.state.words_list[this.state.pre_no].word:''}
-                desc={this.state.words_list?this.state.words_list[this.state.pre_no].desc:''}
+                word={this.state.words_list ? this.state.words_list[this.state.pre_no].word : ''}
+                desc={this.state.words_list ? this.state.words_list[this.state.pre_no].desc : ''}
                 nextWord={() => this.getNextWord()}
-                collect_disabled={true}/>
+                collect_disabled={true} />
             </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>复习进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
-                </div>
-              </Card>
+          </TabPane> : null}
+          {this.state.user.setting % 2 === 0 ? <TabPane className="recite_tabpane" tab="CET6" key="2">
+            <div className="progress_container">
+              <span>Review</span>
+              <Progress percent={parseInt((this.state.pre_no + 1) * 100 / this.state.test_count, 10)} status="active" />
             </div>
-          </TabPane>:null}
-          {this.state.user.setting % 2 === 0?<TabPane className="recite_tabpane" tab="六级" key="2">
-            <div className="oneword" style={{"margin":"5rem 2rem"}}>
+            <div className="oneword" style={{ "margin": "3rem 5rem" }}>
               <OneWord
                 fav_flag={this.state.fav_flag}
-                word={this.state.words_list?this.state.words_list[this.state.pre_no].word:''}
-                desc={this.state.words_list?this.state.words_list[this.state.pre_no].desc:''}
+                word={this.state.words_list ? this.state.words_list[this.state.pre_no].word : ''}
+                desc={this.state.words_list ? this.state.words_list[this.state.pre_no].desc : ''}
                 nextWord={() => this.getNextWord()}
-                collect_disabled={true}/>
+                collect_disabled={true} />
             </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>复习进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.pre_no + 1)*100/this.state.test_count,10)} status="active"/>
-                </div>
-              </Card>
-            </div>
-          </TabPane>:null}
+          </TabPane> : null}
         </Tabs>
       </div>
     );

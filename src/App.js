@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import {Input} from 'antd';
 import {Layout} from 'antd';
 import HeaderCustom from './components/HeaderCustom/HeaderCustom';
+import Header from './components/UnloginHeader/UnloginHeader';
 import FooterCustom from './components/FooterCustom/FooterCustom';
 import { CookiesProvider } from 'react-cookie';
 import './App.css';
@@ -14,16 +15,18 @@ class App extends Component {
       <CookiesProvider>
       <Layout>
         <HeaderCustom/>
-        <Layout style={{flexDirection: 'row'}}>
-          <Layout style={{padding: '0 24px 24px'}}>
-            <Content style={{margin: '0 16px', overflow: 'initial'}}>
-              {childrenWithProps}
-            </Content>
-          </Layout>
-
-        </Layout>
         <Layout>
-          <FooterCustom/>
+          <Header />
+          <Layout style={{flexDirection: 'row'}}>
+            <Layout style={{padding: '0 24px 24px'}}>
+              <Content style={{margin: '0 16px', overflow: 'initial'}}>
+                {childrenWithProps}
+              </Content>
+            </Layout>
+          </Layout>
+          <Layout>
+            <FooterCustom/>
+          </Layout>
         </Layout>
       </Layout>
       </CookiesProvider>

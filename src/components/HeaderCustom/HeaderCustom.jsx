@@ -1,35 +1,35 @@
-import React, {Component} from 'react';
-import {Menu, Layout, Modal} from 'antd';
+import React, { Component } from 'react';
+import { Menu, Layout, Modal, Icon } from 'antd';
 import './HeaderCustom.less';
-import {preURL} from "../../axios/config";
+import { preURL } from "../../axios/config";
 import axios from "axios/index";
-import {Link} from 'react-router';
-import {hashHistory} from 'react-router';
-import {withCookies} from 'react-cookie';
+import { Link } from 'react-router';
+import { hashHistory } from 'react-router';
+import { withCookies } from 'react-cookie';
 
-const {Header} = Layout;
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const { Sider } = Layout;
 var navhead = '';
 
 class HeaderCustom extends Component {
   constructor(props) {
     super(props);
-    const {cookies} = this.props;
+    const { cookies } = this.props;
     if (cookies.get('user')) {
-      
+
       this.state = {
         user: cookies.get('user'),
         visible: false,
-        notlogin: false
+        notlogin: false,
+        collapsed: false,
       };
     } else {
       this.state = {
         user: {},
         visible: false,
-        notlogin: false
+        notlogin: false,
+        collapsed: false,
       };
-      Modal.error({title: '用户信息错误', content: '无法获取用户信息，请重新登录！'});
+      Modal.error({ title: '用户信息错误', content: '无法获取用户信息，请重新登录！' });
       cookies.remove("user");
       hashHistory.push('/userservice/login');
     }
@@ -40,7 +40,7 @@ class HeaderCustom extends Component {
   };
 
   logout = () => {
-    const {cookies} = this.props;
+    const { cookies } = this.props;
     const user = cookies.get('user');
     console.log("user:", user)
 
@@ -57,11 +57,11 @@ class HeaderCustom extends Component {
     }).then((response) => {
       console.log("logout response:", response);
       if (response.data.code === "200") {
-        this.setState({user: ''});
+        this.setState({ user: '' });
         cookies.remove("user");
         hashHistory.push('/userservice/login');
       } else {
-        Modal.error({title: '注销失败', content: '注销失败！'});
+        Modal.error({ title: '注销失败', content: '注销失败！' });
       }
     }).catch((error) => {
       console.log("logout error:", error);
@@ -70,49 +70,50 @@ class HeaderCustom extends Component {
     });
   };
 
+  onCollapse = (collapsed) => {
+    this.setState({ collapsed });
+  }
+
   render() {
-    navhead = "你好！ " + (this.state.user.name
+    navhead = "" + (this.state.user.name
       ? this.state.user.name
       : '');
     return (
-      <Header>
-        <div className="logo"/>
+      <Sider
+        collapsed={this.state.collapsed}
+        onCollapse={this.onCollapse}
+        >
         <Menu
           theme="dark"
-          mode="horizontal"
+          mode="inline"
           defaultSelectedKeys={['1']}
           style={{
-          lineHeight: '64px'
-        }}>
+            lineHeight: '64px'
+          }}>
+          <Menu.Item key="3">
+            <Icon type="user" />
+            <span>{navhead}</span>
+          </Menu.Item>
           <Menu.Item key="4">
-            <Link to={'/app/recite'}>背单词</Link>
+            <Link to={'/app/recite'}>Recite</Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to={'/app/wordsbook'}>单词本</Link>
+            <Link to={'/app/wordsbook'}>Words Book</Link>
           </Menu.Item>
           <Menu.Item key="6">
-            <Link to={'/app/test'}>考核</Link>
+            <Link to={'/app/test'}>Test</Link>
           </Menu.Item>
           <Menu.Item key="7">
-            <Link to={'/app/review'}>复习</Link>
+            <Link to={'/app/review'}>Review</Link>
           </Menu.Item>
-          <SubMenu
-            style={{
-            float: 'right',
-            zIndex: 10
-          }}
-            title={navhead}>
-            < MenuItemGroup title="用户中心">
-              <Menu.Item key="11">
-                <Link to={'/app/setting'}>用户设置</Link>
-              </Menu.Item>
-              <Menu.Item key="12" onClick={() => {
-                  this.setState({visible: true});
-                }}>
-                <span>退出登录</span>
-              </Menu.Item>
-            </MenuItemGroup >
-          </SubMenu>
+          <Menu.Item key="11">
+            <Link to={'/app/setting'}>Setting</Link>
+          </Menu.Item>
+          <Menu.Item key="12" onClick={() => {
+            this.setState({ visible: true });
+          }}>
+            <span>Logout</span>
+          </Menu.Item>
         </Menu>
         <Modal
           className='logout_modal'
@@ -120,13 +121,13 @@ class HeaderCustom extends Component {
           visible={this.state.visible}
           onOk={this.logout}
           onCancel={() => {
-          this.setState({visible: false});
-        }}
+            this.setState({ visible: false });
+          }}
           okText="确认"
           cancelText="取消">
           您确定注销用户登录吗？
         </Modal>
-      </Header>
+      </Sider>
     )
   }
 }

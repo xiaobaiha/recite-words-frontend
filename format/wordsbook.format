@@ -1,4 +1,4 @@
-// 用户获取自定义四级单词列表
+// 用户获取自定义CET4单词列表
 ajax: "/api/wordsbook/cet4_list"
 ajax.request{
     user: 'user001'
@@ -19,7 +19,7 @@ ajax.response:{
     }
 }
 
-// 用户获取自定义六级单词列表
+// 用户获取自定义CET6单词列表
 ajax: "/api/wordsbook/cet6_list"
 ajax.request{
     user: 'user001@163.com'

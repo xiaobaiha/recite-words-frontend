@@ -5,7 +5,6 @@ import {
   Input,
   Button,
   Checkbox,
-  Divider,
   Modal
 } from "antd";
 import { Link } from "react-router";

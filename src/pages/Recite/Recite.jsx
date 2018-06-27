@@ -1,7 +1,7 @@
 import React from 'react';
-import {Tabs, Progress,Card, notification, Modal} from 'antd';
+import { Tabs, Progress, notification, Modal } from 'antd';
 import axios from 'axios';
-import {preURL} from '../../axios/config';
+import { preURL } from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
 import './Recite.less';
 import { withCookies } from "react-cookie";
@@ -11,7 +11,7 @@ const CET4_COUNT = 5520;
 const CET6_COUNT = 1540;
 
 class Recite extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       cet_flag: true, // true for cet4 and false for cet6
@@ -20,10 +20,10 @@ class Recite extends React.Component {
     }
   }
   componentWillMount() {
-    const {user} = this.state;
-    if(user && user.setting < 2){
+    const { user } = this.state;
+    if (user && user.setting < 2) {
       this.setCet4Data();
-    } else if(user && user.setting === 2){
+    } else if (user && user.setting === 2) {
       this.setCet6Data();
     }
   }
@@ -36,14 +36,14 @@ class Recite extends React.Component {
         data: {
           user: this.state.user.email,
           word: this.state.today_words.word,
-          catalog: this.state.cet_flag? 0: 1,
+          catalog: this.state.cet_flag ? 0 : 1,
         },
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         }
       }).then(response => {
         console.log("collect response:", response);
-        if(response.data.code === "200"){
+        if (response.data.code === "200") {
           this.setState({
             fav_flag: false,
           });
@@ -51,7 +51,7 @@ class Recite extends React.Component {
             message: '删除成功',
             description: '已从单词本中移除',
           });
-          
+
         }
       }).catch(error => console.error("collect error:", error));
     } else {
@@ -62,14 +62,14 @@ class Recite extends React.Component {
         data: {
           user: this.state.user.email,
           present_no: this.state.present_no,
-          catalog: this.state.cet_flag? 0: 1,
+          catalog: this.state.cet_flag ? 0 : 1,
         },
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         }
       }).then(response => {
         console.log("collect response:", response);
-        if(response.data.code === "200"){
+        if (response.data.code === "200") {
           this.setState({
             fav_flag: true
           });
@@ -144,7 +144,7 @@ class Recite extends React.Component {
     console.log("next word");
     axios({
       method: "post",
-      url: preURL + "/api/recite/"+(this.state.cet_flag?"cet4_next":"cet6_next"),
+      url: preURL + "/api/recite/" + (this.state.cet_flag ? "cet4_next" : "cet6_next"),
       dataType: "json",
       data: {
         user: this.state.user.email,
@@ -162,7 +162,7 @@ class Recite extends React.Component {
         fav_flag: data.today_words.collected
       });
       if (data.present_no - data.today_no === this.state.count) {
-        Modal.success({title:"恭喜",content:"您已完成今日计划"})
+        Modal.success({ title: "恭喜", content: "您已完成今日计划" })
       }
     }).catch(error => console.error("recite/cet6 error:", error));
   }
@@ -170,54 +170,42 @@ class Recite extends React.Component {
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
-          {this.state.user.setting < 2?<TabPane className="recite_tabpane" tab="四级" key="1">
+          {this.state.user.setting < 2 ? <TabPane className="recite_tabpane" tab="CET4" key="1">
+            <div className="progress_container">
+              <span>Today</span>
+              <Progress percent={parseInt((this.state.present_no - this.state.today_no) * 100 / this.state.counter, 10)} status="active" />
+            </div>
+            <div className="progress_container">
+              <span>CET4</span>
+              <Progress percent={parseInt(this.state.present_no * 100 / CET4_COUNT, 10)} status="active" />
+            </div>
             <div className="oneword">
               <OneWord
                 fav_flag={this.state.fav_flag}
-                word={this.state.today_words?this.state.today_words.word:''}
-                desc={this.state.today_words?this.state.today_words.desc:''}
+                word={this.state.today_words ? this.state.today_words.word : ''}
+                desc={this.state.today_words ? this.state.today_words.desc : ''}
                 nextWord={() => this.getNextWord()}
-                favorite={() => this.addToWordsbook()}/>
+                favorite={() => this.addToWordsbook()} />
             </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>今天背诵进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter,10)} status="active"/>
-                </div>
-              </Card>
-              <Card>
-                <div className="progress_container">
-                  <span>CET4总进度</span>
-                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET4_COUNT,10)} status="active"/>
-                </div>
-              </Card>
+          </TabPane> : null}
+          {this.state.user.setting % 2 === 0 ? <TabPane className="recite_tabpane" tab="CET6" key="2">
+            <div className="progress_container">
+              <span>Today</span>
+              <Progress percent={parseInt((this.state.present_no - this.state.today_no) * 100 / this.state.counter, 10)} status="active" />
             </div>
-          </TabPane>:null}
-          {this.state.user.setting % 2 === 0?<TabPane className="recite_tabpane" tab="六级" key="2">
+            <div className="progress_container">
+              <span>CET6</span>
+              <Progress percent={parseInt(this.state.present_no * 100 / CET6_COUNT, 10)} status="active" />
+            </div>
             <div className="oneword">
               <OneWord
                 fav_flag={this.state.fav_flag}
-                word={this.state.today_words?this.state.today_words.word:''}
-                desc={this.state.today_words?this.state.today_words.desc:''}
+                word={this.state.today_words ? this.state.today_words.word : ''}
+                desc={this.state.today_words ? this.state.today_words.desc : ''}
                 nextWord={() => this.getNextWord()}
-                favorite={() => this.addToWordsbook()}/>
+                favorite={() => this.addToWordsbook()} />
             </div>
-            <div>
-              <Card>
-                <div className="progress_container">
-                  <span>今天背诵进度</span>
-                  <Progress type="circle" percent={parseInt((this.state.present_no-this.state.today_no)*100/this.state.counter,10)} status="active"/>
-                </div>
-              </Card>
-              <Card>
-                <div className="progress_container">
-                  <span>CET6总进度</span>
-                  <Progress type="circle" percent={parseInt(this.state.present_no * 100 / CET6_COUNT,10)} status="active"/>
-                </div>
-              </Card>
-            </div>
-          </TabPane>:null}
+          </TabPane> : null}
         </Tabs>
       </div>
     );

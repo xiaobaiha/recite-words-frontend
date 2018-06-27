@@ -13,9 +13,12 @@ class OneWordPanel extends React.Component {
     if(props.word === this.props.word) return
     this.setState({
       show: true,
-      pre_actions: [< span onClick={() =>
+      pre_actions: [
+      < span style={{color:"#1DA57A"}} onClick={() =>
         this.props.nextWord()
-      } > <Icon type="smile" />认识 </span>, <span onClick={this.handleNotKnow}>不认识<Icon type="frown" /> </span>]
+      } > <Icon type="smile" /></span>, 
+      <span style={{color:"red"}} onClick={this.handleNotKnow}><Icon type="frown" /> </span>
+    ]
     });
   }
   handleNotKnow = () => {
@@ -26,11 +29,11 @@ class OneWordPanel extends React.Component {
     }
     this.setState({
       show: false,
-      pre_actions: [<span onClick={() =>
+      pre_actions: [<span style={{color:"#1890ff"}} onClick={() =>
         this
           .props
           .nextWord()
-      } > 下一个 < Icon type="forward" /></span>]
+      } >< Icon type="forward" /></span>]
     })
   }
 
