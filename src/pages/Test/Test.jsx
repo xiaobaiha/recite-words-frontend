@@ -73,13 +73,11 @@ class Test extends React.Component {
       Modal.success({title:'测试完成',content:<span>您的测试得分是{grade+1}分！</span>});
     } else {
       grade++;
-      // console.log(grade);
       this.setState({pre_no: pre_no});
     }
   }
   handleTestSpe = () => {
     grade--;
-    // console.log(grade);
   }
   render() {
     return (

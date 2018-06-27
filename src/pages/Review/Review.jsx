@@ -68,8 +68,17 @@ class Review extends React.Component {
 
   getNextWord = () => {
     let pre_no = this.state.pre_no + 1;
+    let {cet_flag} = this.state;
+    let {setCet4Data, setCet6Data} = this;
     if(pre_no === this.state.test_count){
-      Modal.success({title:'恭喜',content:'您已完成复习！'});
+      Modal.success({
+        title:'恭喜',
+        content:'您已完成复习！',
+        onOk(){
+          if(cet_flag) setCet4Data();
+          else  setCet6Data();
+        }
+      });
     } else {
       this.setState({pre_no: pre_no});
     }
