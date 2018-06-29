@@ -74,8 +74,8 @@ class Signup extends React.Component {
                 router.push("/userservice/login");
               }, 3000);
 
-            } else if (response.data.code === "6008") {
-              Modal.error({ title: "注册失败", content: "注册邮箱账号已存在/已经被占用！" });
+            } else if (response.data.code === "1037") {
+              Modal.error({ title: "注册失败", content: "注册邮箱账号已存在！" });
             } else {
               Modal.error({ title: "注册失败", content: "未知错误..." });
             }
