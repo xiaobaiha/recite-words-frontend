@@ -4,6 +4,7 @@ import axios from 'axios';
 import {preURL} from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
 import './Recite.less';
+import {hashHistory} from 'react-router';
 import { withCookies } from "react-cookie";
 
 const TabPane = Tabs.TabPane;
@@ -13,11 +14,16 @@ const CET6_COUNT = 1540;
 class Recite extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      cet_flag: true, // true for cet4 and false for cet6
-      fav_flag: false,
-      user: props.cookies.get('user')
+    if(props.cookies.get('user')){
+      this.state = {
+        cet_flag: true, // true for cet4 and false for cet6
+        fav_flag: false,
+        user: props.cookies.get('user')
+      }
+    } else {
+      hashHistory.push('/userservice/login');
     }
+    
   }
   componentWillMount() {
     const {user} = this.state;
@@ -167,6 +173,7 @@ class Recite extends React.Component {
     }).catch(error => console.error("recite/cet6 error:", error));
   }
   render() {
+    if(this.state&&this.state.user){
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
@@ -221,6 +228,9 @@ class Recite extends React.Component {
         </Tabs>
       </div>
     );
+  } else {
+    return <span />
+  }
   }
 }
 

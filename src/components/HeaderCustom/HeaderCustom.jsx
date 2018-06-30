@@ -15,22 +15,13 @@ var navhead = '';
 class HeaderCustom extends Component {
   constructor(props) {
     super(props);
+    console.log("enter hender")
     const {cookies} = this.props;
     if (cookies.get('user')) {
-      
       this.state = {
         user: cookies.get('user'),
-        visible: false,
-        notlogin: false
       };
     } else {
-      this.state = {
-        user: {},
-        visible: false,
-        notlogin: false
-      };
-      Modal.error({title: '用户信息错误', content: '无法获取用户信息，请重新登录！'});
-      cookies.remove("user");
       hashHistory.push('/userservice/login');
     }
   }
@@ -71,9 +62,13 @@ class HeaderCustom extends Component {
   };
 
   render() {
-    navhead = "你好！ " + (this.state.user.name
-      ? this.state.user.name
-      : '');
+    if(this.props.cookies.get('user')){
+      console.log("user:",this.props.cookies.get('user'))
+      navhead = "你好！ " + (this.state.user.name
+        ? this.state.user.name
+        : '');
+    
+    
     return (
       <Header>
         <div className="logo"/>
@@ -128,6 +123,10 @@ class HeaderCustom extends Component {
         </Modal>
       </Header>
     )
+  }
+  else {
+    return <span/>
+  }
   }
 }
 
