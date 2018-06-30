@@ -10,7 +10,7 @@ class HeaderCustom extends Component {
     return (
       <Footer className='footer'>
         <BackTop/>
-        COPYRIGHT ©2018 iWord ALL RIGHTS RESERVEDs
+        Copyright ©2018 iWord All Rights Reserved.
       </Footer>
     )
   }

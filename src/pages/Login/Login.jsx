@@ -118,7 +118,7 @@ class Login extends React.Component {
               <Input
                 size="large"
                 prefix={< Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-                placeholder="用户名" />
+                placeholder="邮箱" />
             )}
           </FormItem>
           <FormItem>

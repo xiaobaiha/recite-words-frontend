@@ -161,7 +161,7 @@ class Recite extends React.Component {
         today_words: data.today_words,
         fav_flag: data.today_words.collected
       });
-      if (data.present_no - data.today_no === this.state.count) {
+      if (data.present_no - this.state.today_no === this.state.counter) {
         Modal.success({title:"恭喜",content:"您已完成今日计划"})
       }
     }).catch(error => console.error("recite/cet6 error:", error));

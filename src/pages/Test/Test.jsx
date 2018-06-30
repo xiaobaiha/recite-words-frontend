@@ -132,7 +132,7 @@ class Test extends React.Component {
   handleTestSpe = () => {
     grade--;
     let { pre_no, dirty } = this.state;
-    dirty = dirty.splice(pre_no, 1, false);
+    dirty.splice(pre_no, 1, false);
     this.setState({
       dirty: dirty
     });
