@@ -13,6 +13,7 @@ class Setting extends React.Component {
     const user = this.props.cookies.get('user');
     this.setState({
       email: user.email,
+      name: user.name,
       setting: user.setting,
       check4: user.setting < 2,
       check6: user.setting % 2 === 0,
@@ -71,6 +72,11 @@ class Setting extends React.Component {
         this.setState({
           check4: item
         });
+        this.props.cookies.set("user", {
+          name: this.state.name,
+          email: this.state.email,
+          setting: _set
+        });
       }
     }).catch(error => console.error("setting/plan error:", error));
   }
@@ -104,6 +110,11 @@ class Setting extends React.Component {
       if (response.data.code === "200"){
         this.setState({
           check6: item
+        });
+        this.props.cookies.set("user", {
+          name: this.state.name,
+          email: this.state.email,
+          setting: _set
         });
       }
     }).catch(error => console.error("setting/plan error:", error));
