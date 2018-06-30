@@ -24,7 +24,7 @@ export default class CRouter extends Component {
       <Router history={hashHistory}>
         <Route path={'/'}>
           {/* <Route path={'app'} component={App} onEnter={this.requireAuth}>  */}
-          <IndexRedirect to="/app/recite"/>
+          <IndexRedirect to="/userservice/login"/>
           <Route path={'app'} component={App}>
               <Route path={'recite'} component={Recite}/>
               <Route path={'wordsbook'} component={WordsBook}/>

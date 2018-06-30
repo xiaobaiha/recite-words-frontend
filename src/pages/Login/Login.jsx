@@ -11,7 +11,6 @@ import {
 } from "antd";
 import { Link } from "react-router";
 import "./Login.less";
-// import LoginImg from "./Login.png";
 import axios from "axios";
 import { preURL } from "../../axios/config";
 import { hashHistory } from "react-router";
@@ -35,14 +34,7 @@ class Login extends React.Component {
     const { cookies } = this.props;
 
     if (cookies.get("user")) {
-      let userObj = cookies.get("user");
-      if (userObj.roleId === 1) {
-        this.setState({
-          user: cookies.get("user"),
-          userType: 1
-        });
-        hashHistory.push("/app/recite");
-      }
+      hashHistory.push("/app/recite");
     }
   }
 
