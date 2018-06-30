@@ -30,14 +30,7 @@ class Signup extends React.Component {
     const { cookies } = this.props;
 
     if (cookies.get("user")) {
-      let userObj = cookies.get("user");
-      if (userObj.roleId === 1) {
-        this.setState({
-          user: cookies.get("user"),
-          userType: 1
-        });
-        hashHistory.push("/app/recite");
-      }
+      hashHistory.push("/app/recite");
     }
   }
 
