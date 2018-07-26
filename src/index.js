@@ -1,9 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import CRouter from './routes';
-// import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import CRouter from "./routes";
+import { Provider } from "react-redux";
+import registerServiceWorker from "./registerServiceWorker";
+import { createStore } from "redux";
 
-ReactDOM.render(<CRouter/>, document.getElementById('root'));
+let store = createStore(reducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <CRouter />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();
