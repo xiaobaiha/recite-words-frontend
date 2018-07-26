@@ -4,6 +4,7 @@ import axios from 'axios';
 import { preURL } from '../../axios/config';
 import OneWord from '../../components/OneWordPanel'
 import '../Recite/Recite.less';
+import {hashHistory} from 'react-router';
 import { withCookies } from "react-cookie";
 
 const TabPane = Tabs.TabPane;
@@ -12,13 +13,19 @@ class Test extends React.Component {
   constructor(props) {
     super(props);
     const user = props.cookies.get('user');
-    this.state = {
-      user: user,
-      cet_flag: user.setting === 2 ? false : true,
-      result_show: false,
+    if(props.cookies.get('user')){
+      this.state = {
+        user: user,
+        cet_flag: user.setting === 2 ? false : true,
+        result_show: false,
+      }
+    } else {
+      hashHistory.push('/userservice/login');
     }
+    
   }
   componentWillMount() {
+    if(this.state&&this.state.user)
     this.setCet4Data();
   }
   callback = (key) => {
@@ -132,12 +139,13 @@ class Test extends React.Component {
   handleTestSpe = () => {
     grade--;
     let { pre_no, dirty } = this.state;
-    dirty = dirty.splice(pre_no, 1, false);
+    dirty.splice(pre_no, 1, false);
     this.setState({
       dirty: dirty
     });
   }
   render() {
+    if(this.state&&this.state.user){
     return (
       <div className="recite_panel">
         <Tabs size="large" onChange={this.callback} type="card">
@@ -184,6 +192,7 @@ class Test extends React.Component {
         </Tabs>
       </div>
     );
+  } else return null;
   }
 }
 

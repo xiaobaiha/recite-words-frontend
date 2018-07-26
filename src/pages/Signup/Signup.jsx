@@ -30,14 +30,7 @@ class Signup extends React.Component {
     const { cookies } = this.props;
 
     if (cookies.get("user")) {
-      let userObj = cookies.get("user");
-      if (userObj.roleId === 1) {
-        this.setState({
-          user: cookies.get("user"),
-          userType: 1
-        });
-        hashHistory.push("/app/recite");
-      }
+      hashHistory.push("/app/recite");
     }
   }
 
@@ -74,8 +67,8 @@ class Signup extends React.Component {
                 router.push("/userservice/login");
               }, 3000);
 
-            } else if (response.data.code === "6008") {
-              Modal.error({ title: "注册失败", content: "注册邮箱账号已存在/已经被占用！" });
+            } else if (response.data.code === "1037") {
+              Modal.error({ title: "注册失败", content: "注册邮箱账号已存在！" });
             } else {
               Modal.error({ title: "注册失败", content: "未知错误..." });
             }

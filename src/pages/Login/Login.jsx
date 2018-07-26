@@ -11,7 +11,6 @@ import {
 } from "antd";
 import { Link } from "react-router";
 import "./Login.less";
-// import LoginImg from "./Login.png";
 import axios from "axios";
 import { preURL } from "../../axios/config";
 import { hashHistory } from "react-router";
@@ -35,14 +34,7 @@ class Login extends React.Component {
     const { cookies } = this.props;
 
     if (cookies.get("user")) {
-      let userObj = cookies.get("user");
-      if (userObj.roleId === 1) {
-        this.setState({
-          user: cookies.get("user"),
-          userType: 1
-        });
-        hashHistory.push("/app/recite");
-      }
+      hashHistory.push("/app/recite");
     }
   }
 
@@ -80,10 +72,12 @@ class Login extends React.Component {
                   maxAge: 24 * 3600
                 });
               hashHistory.push("/app/recite");
-            } else if (response.data.code === "1011") {
-              Modal.error({ title: "登录失败", content: "没有对应账号！" });
-            } else if (response.data.code === "1013") {
-              Modal.error({ title: "登录失败", content: "账户或密码错误，请重新填写！" });
+            } else if (response.data.code === "1036") {
+              Modal.error({ title: "登录失败", content: "用户不存在!" });
+            } else if (response.data.code === "1035") {
+              Modal.error({ title: "登录失败", content: "密码错误！" });
+            } else if (response.data.code === "1034") {
+              Modal.error({ title: "登录失败", content: "账户被禁用！" });
             } else {
               Modal.error({ title: "登录失败", content: "系统错误" });
             }
@@ -124,7 +118,7 @@ class Login extends React.Component {
               <Input
                 size="large"
                 prefix={< Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-                placeholder="用户名" />
+                placeholder="邮箱" />
             )}
           </FormItem>
           <FormItem>

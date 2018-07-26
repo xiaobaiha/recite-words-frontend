@@ -4,6 +4,7 @@ import './Wordsbook.less';
 import { withCookies } from "react-cookie";
 import axios from 'axios';
 import {preURL} from '../../axios/config';
+import {hashHistory} from 'react-router';
 
 const TabPane = Tabs.TabPane;
 class WordsBook extends React.Component {
@@ -37,13 +38,19 @@ class WordsBook extends React.Component {
       }
     ];
     const user = props.cookies.get('user');
-    this.state = {
-      dataSource: [],
-      user: user,
-      cet_flag: true,
-    };
+    if(props.cookies.get('user')){
+      this.state = {
+        dataSource: [],
+        user: user,
+        cet_flag: true,
+      };
+    } else {
+      hashHistory.push('/userservice/login');
+    }
+    
   }
-  componentWillMount(){
+  componentDidMount(){
+    if(this.state&&this.state.user)
     this.getCet4List();
   }
   getCet4List = () => {
@@ -149,6 +156,7 @@ class WordsBook extends React.Component {
     }
   }
   render() {
+    if(this.state && this.state.user){
     const {dataSource} = this.state;
     const columns = this.columns;
     return (
@@ -175,6 +183,7 @@ class WordsBook extends React.Component {
         </Tabs>
       </div>
     )
+  } else return null;
   }
 }
 
