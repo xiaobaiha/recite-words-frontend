@@ -6,6 +6,9 @@ import OneWord from "../../components/OneWordPanel";
 import "./Recite.less";
 import { hashHistory } from "react-router";
 import { withCookies } from "react-cookie";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addWord } from "../../actions";
 
 const TabPane = Tabs.TabPane;
 const CET4_COUNT = 5520;
@@ -80,6 +83,7 @@ class Recite extends React.Component {
             this.setState({
               fav_flag: true
             });
+            this.props.addWord(this.state.today_words.word);
             notification.success({
               message: "添加成功",
               description: "已添加到单词本"
@@ -290,4 +294,18 @@ class Recite extends React.Component {
   }
 }
 
-export default withCookies(Recite);
+const mapStateToProps = state => {
+  const { user } = state;
+  return { user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addWord: bindActionCreators(addWord, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withCookies(Recite));
