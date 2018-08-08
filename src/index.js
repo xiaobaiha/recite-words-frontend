@@ -5,6 +5,7 @@ import CRouter from "./routes";
 import { Provider } from "react-redux";
 import registerServiceWorker from "./registerServiceWorker";
 import { createStore } from "redux";
+import reducer from "./reducers";
 
 let store = createStore(reducer);
 
