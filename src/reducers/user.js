@@ -1,6 +1,6 @@
 const userOperations = (state = {}, action) => {
   switch (action.type) {
-    case "GET_USER":
+    case "SET_USER":
       return {
         ...state,
         user: action.user
