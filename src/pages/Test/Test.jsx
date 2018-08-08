@@ -114,14 +114,6 @@ class Test extends React.Component {
           });
         }
       });
-      console.log(
-        "datasource:",
-        dataSource,
-        " column:",
-        columns,
-        " grade:",
-        grade
-      );
       Modal.success({
         title: "测试完成",
         width: 800,

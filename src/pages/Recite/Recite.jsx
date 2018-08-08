@@ -153,7 +153,6 @@ class Recite extends React.Component {
       .catch(error => console.error("recite/cet6 error:", error));
   };
   getNextWord = () => {
-    console.log("next word");
     axios({
       method: "post",
       url:

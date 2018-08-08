@@ -125,7 +125,6 @@ class WordsBook extends React.Component {
     this.state.dataSource.forEach(item => {
       if (item.key === key) word = item.word;
     });
-    console.log("word:", word);
     axios({
       method: "post",
       url: preURL + "/api/wordsbook/delete_custom",
