@@ -21,7 +21,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "server": "node ./scripts/server_test.js"
+    "server": "node ./scripts/server_test.js",
+    "http": "node ./scripts/http-server.js"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
