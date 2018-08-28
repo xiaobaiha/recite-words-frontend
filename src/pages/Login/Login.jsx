@@ -93,118 +93,120 @@ class Login extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="login_outer_all_container">
-        <div className="carousel">
-          <Carousel autoplay>
-            <div>
-              <img
-                alt=""
-                style={{ height: "20rem" }}
-                src="https://static.baydn.com/web/images/intro-client-checkin.png"
-              />
-              <p>单词背诵</p>
-              <p>在线学习四六级词汇</p>
-            </div>
-            <div>
-              <img
-                alt=""
-                style={{ height: "20rem" }}
-                src="https://static.baydn.com/web/images/intro-client-community.png"
-              />
-              <p>自定义收藏</p>
-              <p>实时收藏学习过程中的单词</p>
-            </div>
-            <div>
-              <img
-                alt=""
-                style={{ height: "20rem" }}
-                src="https://static.baydn.com/web/images/intro-client-insurance.png"
-              />
-              <p>学习回顾</p>
-              <p>复习自己所学过的单词</p>
-            </div>
-            <div>
-              <img
-                alt=""
-                style={{ height: "20rem" }}
-                src="https://static.baydn.com/web/images/intro-client-academy.png"
-              />
-              <p>在线考核</p>
-              <p>检测自己的学习成果</p>
-            </div>
-          </Carousel>
-        </div>
-        <div className="login_all_container">
-          <Form
-            key="student_form"
-            onSubmit={this.handleSubmit}
-            className="login-form"
-          >
-            <FormItem className="login_form_title">
-              <h2>登录</h2>
-              <Divider />
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator("email", {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入邮箱!"
-                  }
-                ]
-              })(
-                <Input
-                  size="large"
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="邮箱"
+        <div className="innerdiv">
+          <div className="carousel">
+            <Carousel autoplay>
+              <div>
+                <img
+                  alt=""
+                  style={{ height: "20rem" }}
+                  src="https://static.baydn.com/web/images/intro-client-checkin.png"
                 />
-              )}
-            </FormItem>
-            <FormItem>
-              {getFieldDecorator("password", {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入密码!"
-                  }
-                ]
-              })(
-                <Input
-                  size="large"
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  type="password"
-                  placeholder="密码"
-                />
-              )}
-            </FormItem>
-            <FormItem>
-              <div className="suff_container">
-                <div className="suff_item">
-                  {getFieldDecorator("remember", {
-                    valuePropName: "checked",
-                    initialValue: true
-                  })(<Checkbox>记住我</Checkbox>)}
-                </div>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
-                  登录
-                </Button>
-                <Link
-                  onClick={() => {
-                    hashHistory.push("/userservice/signup");
-                  }}
-                >
-                  注册
-                </Link>
+                <p>单词背诵</p>
+                <p>在线学习四六级词汇</p>
               </div>
-            </FormItem>
-          </Form>
+              <div>
+                <img
+                  alt=""
+                  style={{ height: "20rem" }}
+                  src="https://static.baydn.com/web/images/intro-client-community.png"
+                />
+                <p>自定义收藏</p>
+                <p>实时收藏学习过程中的单词</p>
+              </div>
+              <div>
+                <img
+                  alt=""
+                  style={{ height: "20rem" }}
+                  src="https://static.baydn.com/web/images/intro-client-insurance.png"
+                />
+                <p>学习回顾</p>
+                <p>复习自己所学过的单词</p>
+              </div>
+              <div>
+                <img
+                  alt=""
+                  style={{ height: "20rem" }}
+                  src="https://static.baydn.com/web/images/intro-client-academy.png"
+                />
+                <p>在线考核</p>
+                <p>检测自己的学习成果</p>
+              </div>
+            </Carousel>
+          </div>
+          <div className="login_all_container">
+            <Form
+              key="student_form"
+              onSubmit={this.handleSubmit}
+              className="login-form"
+            >
+              <FormItem className="login_form_title">
+                <h2>登录</h2>
+                <Divider />
+              </FormItem>
+              <FormItem>
+                {getFieldDecorator("email", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "请输入邮箱!"
+                    }
+                  ]
+                })(
+                  <Input
+                    size="large"
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="邮箱"
+                  />
+                )}
+              </FormItem>
+              <FormItem>
+                {getFieldDecorator("password", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "请输入密码!"
+                    }
+                  ]
+                })(
+                  <Input
+                    size="large"
+                    prefix={
+                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    type="password"
+                    placeholder="密码"
+                  />
+                )}
+              </FormItem>
+              <FormItem>
+                <div className="suff_container">
+                  <div className="suff_item">
+                    {getFieldDecorator("remember", {
+                      valuePropName: "checked",
+                      initialValue: true
+                    })(<Checkbox>记住我</Checkbox>)}
+                  </div>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login-form-button"
+                  >
+                    登录
+                </Button>
+                  <Link
+                    onClick={() => {
+                      hashHistory.push("/userservice/signup");
+                    }}
+                  >
+                    注册
+                </Link>
+                </div>
+              </FormItem>
+            </Form>
+          </div>
         </div>
       </div>
     );
